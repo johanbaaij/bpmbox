@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  track: MyString
+  side: MyString
+  artist: one
+  release: one
+  bpm: 9.99
+  key: 1
+
+two:
+  title: MyString
+  track: MyString
+  side: MyString
+  artist: two
+  release: two
+  bpm: 9.99
+  key: 1
