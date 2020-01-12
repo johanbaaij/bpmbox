@@ -6,6 +6,9 @@ on:
       - "frontend/**"
       - ".github/workflows/nodejs.yml"
 
+env:
+  NODE_ENV: test
+
 jobs:
   build:
     runs-on: ubuntu-latest
