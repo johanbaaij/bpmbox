@@ -1,10 +1,25 @@
 import { expect } from "chai";
-import { shallowMount } from "@vue/test-utils";
-import Home from "@/views/Home.vue";
+import Vuetify from "vuetify";
+
+// Components
+import Home from "../../src/views/Home.vue";
+
+// Utilities
+import { mount, createLocalVue } from "@vue/test-utils";
+
+const localVue = createLocalVue();
 
 describe("Home.vue", () => {
-  it("renders", () => {
-    const wrapper = shallowMount(Home);
-    expect(wrapper.find(".home"));
+  let vuetify: any;
+
+  beforeEach(() => {
+    vuetify = new Vuetify();
+  });
+
+  it("should render", () => {
+    const wrapper = mount(Home, {
+      localVue
+    });
+    expect(wrapper.find("h1").contains("Home"));
   });
 });

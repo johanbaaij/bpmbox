@@ -34,5 +34,3 @@ export default class Notifications extends Vue {
   }
 }
 </script>
-
-<style scoped></style>

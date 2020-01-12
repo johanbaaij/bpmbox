@@ -22,5 +22,3 @@ import MetaInfo from "vue-meta";
 })
 export default class Dashboard extends Vue {}
 </script>
-
-<style lang="scss" scoped></style>
