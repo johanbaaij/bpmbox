@@ -2,7 +2,8 @@ name: Node CI
 
 on:
   push:
-    paths: "frontend"
+    paths:
+      - "frontend/**"
 
 jobs:
   build:
@@ -19,6 +20,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g yarn
+        working-directory: "./frontend"
       - name: yarn install, build, and test
         run: |
           yarn
