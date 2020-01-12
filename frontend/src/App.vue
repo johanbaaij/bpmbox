@@ -20,6 +20,7 @@
         }}</v-btn>
       </v-toolbar-items>
     </v-app-bar>
+
     <v-content>
       <Notifications />
       <router-view />
@@ -30,7 +31,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Notifications from "@/components/Notifications.vue";
-import EventBus from "@/utils/event-bus";
 import MetaInfo from "vue-meta";
 
 @Component({
