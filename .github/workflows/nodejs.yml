@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "frontend/**"
+      - ".github/workflows/nodejs.yml"
 
 jobs:
   build:
@@ -20,8 +21,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g yarn
-        working-directory: "./frontend"
       - name: yarn install, build, and test
+        working-directory: "./frontend"
         run: |
           yarn
           yarn build
