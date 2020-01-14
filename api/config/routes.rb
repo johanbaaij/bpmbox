@@ -15,10 +15,6 @@ Rails.application.routes.draw do
       collection do
         get :authenticate
         get :callback
-        get :whoami
-        get :add_want
-        get :edit_want
-        get :remove_want
       end
     end
   end
