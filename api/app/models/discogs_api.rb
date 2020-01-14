@@ -1,10 +1,16 @@
 class DiscogsApi
-  delegate :authenticated?, to: :@discogs
   delegate :get_identity, to: :@discogs
 
   def initialize(user)
     @user = user
     @discogs = Discogs::Wrapper.new('bpmbox', access_token)
+  end
+
+  def authenticated?
+    @discogs.get_identity
+    @discogs.authenticated?
+  rescue
+    false
   end
 
   def get_request_data
