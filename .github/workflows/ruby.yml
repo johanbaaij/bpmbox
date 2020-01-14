@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
+        uses: eregon/use-ruby-action@master
         with:
-          ruby-version: 2.6.5
+          ruby-version: 2.6
       - name: Build and test with Rake
         working-directory: "./api"
         run: |
