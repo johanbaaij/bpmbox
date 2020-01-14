@@ -86,7 +86,7 @@ export default class Register extends Vue {
         vm.resetForm();
         EventBus.$emit(
           "ADD_NOTIFICATION",
-          this.$i18n.t("notifications.registrationComplete")
+          vm.$i18n.t("notifications.registrationComplete")
         );
       },
       error: function(error: AxiosError): void {
