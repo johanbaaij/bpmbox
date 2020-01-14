@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import DiscogsCallback from "@/views/DiscogsCallback.vue";
-import Discogs from "@/views/Discogs.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
 import FourOhFour from "@/views/404.vue";
@@ -45,12 +44,6 @@ const routes = [
     path: "/discogs/callback",
     name: "discogsCallback",
     component: DiscogsCallback,
-    meta: { auth: true }
-  },
-  {
-    path: "/discogs",
-    name: "discogs",
-    component: Discogs,
     meta: { auth: true }
   }
 ];

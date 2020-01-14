@@ -1,11 +1,9 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container fluid>
     <v-row>
       <v-col>
         <h1>{{ $t("Dashboard.title") }}</h1>
-        <p>
-          <v-btn @click="connectToDiscogs">Connect to Discogs</v-btn>
-        </p>
+        <connect-to-discogs v-if="!connectedToDiscogs" />
       </v-col>
     </v-row>
   </v-container>
@@ -14,6 +12,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
+import ConnectToDiscogs from "@/components/ConnectToDiscogs.vue";
 
 @Component({
   name: "dashboard",
@@ -21,14 +20,14 @@ import MetaInfo from "vue-meta";
     return {
       title: this.$i18n.t("Dashboard.title") as string
     };
+  },
+  components: {
+    ConnectToDiscogs
   }
 })
 export default class Dashboard extends Vue {
-  async connectToDiscogs() {
-    const response = await this.axios.get(
-      "http://localhost:3000/discogs/authenticate"
-    );
-    window.location = response.data.url;
+  get connectedToDiscogs() {
+    return this.$auth.user().connected_to_discogs;
   }
 }
 </script>
