@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container fluid>
     <v-row>
       <v-col>
         <ValidationObserver v-slot="{ handleSubmit }">
