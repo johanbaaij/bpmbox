@@ -20,6 +20,9 @@ jobs:
         with:
           ruby-version: 2.6
       - name: Build and test with Rake
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         working-directory: "./api"
         run: |
           gem install bundler
