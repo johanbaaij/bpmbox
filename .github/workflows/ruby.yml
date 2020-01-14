@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install libsqlite3-dev
+        run: |
+          sudo apt-get install libsqlite3-dev
       - name: Set up Ruby 2.6
         uses: eregon/use-ruby-action@master
         with:
