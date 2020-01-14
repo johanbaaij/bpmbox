@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
+import DiscogsCallback from "@/views/DiscogsCallback.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
 import FourOhFour from "@/views/404.vue";
@@ -13,7 +14,8 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
+    meta: { auth: false }
   },
   {
     path: "/404",
@@ -37,6 +39,12 @@ const routes = [
     name: "dashboard",
     component: Dashboard,
     meta: { auth: true }
+  },
+  {
+    path: "/discogs/callback",
+    name: "discogsCallback",
+    component: DiscogsCallback,
+    meta: { auth: true }
   }
 ];
 
@@ -46,12 +54,13 @@ const router = new VueRouter({
   routes
 });
 
-// add notification to "show on next page queue"
-// before navigating, add notification to currently
-
-router.beforeEach((_to, _from, next) => {
+router.beforeEach((to, from, next) => {
   next();
-  EventBus.$emit("DISPLAY_NEXT_NOTIFICATION");
+  displayNextNotification();
 });
+
+const displayNextNotification = function(): void {
+  EventBus.$emit("DISPLAY_NEXT_NOTIFICATION");
+};
 
 export default router;

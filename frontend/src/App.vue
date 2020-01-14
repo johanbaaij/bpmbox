@@ -2,7 +2,7 @@
   <v-app v-if="$auth.ready()">
     <v-app-bar app>
       <v-toolbar-title
-        ><router-link :to="{ name: 'home' }">{{
+        ><router-link :to="homeRoute">{{
           $t("app.title")
         }}</router-link></v-toolbar-title
       >
@@ -48,5 +48,15 @@ import MetaInfo from "vue-meta";
     };
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  get homeRoute() {
+    if (this.$auth.check())
+      return {
+        name: "dashboard"
+      };
+    return {
+      name: "home"
+    };
+  }
+}
 </script>

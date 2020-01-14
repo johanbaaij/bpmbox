@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container fluid>
     <v-row>
       <v-col>
         <ValidationObserver v-slot="{ handleSubmit }">
@@ -86,7 +86,7 @@ export default class Register extends Vue {
         vm.resetForm();
         EventBus.$emit(
           "ADD_NOTIFICATION",
-          "Registration complete, you may now log in."
+          vm.$i18n.t("notifications.registrationComplete")
         );
       },
       error: function(error: AxiosError): void {

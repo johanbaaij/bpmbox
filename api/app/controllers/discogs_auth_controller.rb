@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DiscogsController < ApplicationController
+class DiscogsAuthController < ApplicationController
   before_action :authenticate_user!
 
   before_action do

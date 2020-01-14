@@ -4,18 +4,25 @@ on:
   push:
     paths:
       - "api/**"
+      - ".github/workflows/ruby.yml"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Install libsqlite3-dev
+        run: |
+          sudo apt-get install libsqlite3-dev
       - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
+        uses: eregon/use-ruby-action@master
         with:
-          ruby-version: 2.6.x
+          ruby-version: 2.6
       - name: Build and test with Rake
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         working-directory: "./api"
         run: |
           gem install bundler
