@@ -7,6 +7,9 @@ module Overrides
       # Unpermitted parameter: session
       wrap_parameters format: []
 
+      def render_create_success
+        render jsonapi: @resource
+      end
     end
   end
 end
