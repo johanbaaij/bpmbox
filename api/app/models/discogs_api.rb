@@ -11,7 +11,7 @@ class DiscogsApi
     @request_data = @discogs.get_request_token(
       Rails.application.credentials.discogs[:key],
       Rails.application.credentials.discogs[:secret],
-      'http://localhost:8080/discogs/callback'
+      "#{Rails.configuration.settings['client_url']}/discogs/callback"
     )
     store_request_token_temporarily
     @request_data
