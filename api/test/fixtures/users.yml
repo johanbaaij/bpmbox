@@ -1,12 +1,27 @@
+<% credentials = Rails.application.credentials.testing %>
 <% timestamp = DateTime.parse(2.weeks.ago.to_s).to_time.strftime("%F %T") %>
-no_discogs:
-  uid:                'johan@baaij.com'
-  email:              'johan@baaij.com'
-  nickname:           'johanbaaij'
-  name:               'Johan Baaij'
-  provider:           'email'
-  confirmed_at:       '<%= timestamp %>'
-  created_at:         '<%= timestamp %>'
-  updated_at:         '<%= timestamp %>'
-  encrypted_password: <%= User.new.send(:password_digest, 'secret123') %>
+<% access_token = Rails.application.credentials.testing[:discogs][:access_token] %>
 
+no_discogs:
+  uid: 'johan@baaij.com'
+  email: 'johan@baaij.com'
+  nickname: 'johanbaaij'
+  name: 'Johan Baaij'
+  provider: 'email'
+  confirmed_at: '<%= timestamp %>'
+  created_at: '<%= timestamp %>'
+  updated_at: '<%= timestamp %>'
+  encrypted_password: <%= User.new.send(:password_digest, 'secret123') %>
+authorized_discogs:
+  uid: <%= credentials[:discogs][:uid] %>
+  email: <%= credentials[:discogs][:uid] %>
+  nickname: 'authorized_discogs'
+  name: 'Authorized Discogs'
+  provider: 'email'
+  confirmed_at: '<%= timestamp %>'
+  created_at: '<%= timestamp %>'
+  updated_at: '<%= timestamp %>'
+  encrypted_password: <%= User.new.send(:password_digest, 'secret123') %>
+  discogs_access_token:
+    oauth_token: <%= access_token[:oauth_token] %>
+    oauth_token_secret: <%= access_token[:oauth_token_secret] %>

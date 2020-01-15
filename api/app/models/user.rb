@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  def discogs_api
-    Discogs::Authorizer.new(self)
+  def discogs_user
+    Discogs::User.new(self)
   end
 end
