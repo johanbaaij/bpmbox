@@ -38,7 +38,7 @@
     "email": "please enter a valid email address"
   },
   "notifications": {
-    "discogsAuthentication": "Your Discogs account has succesfully been connected to bpmbox.",
+    "discogsAuthenticationComplete": "Your Discogs account has succesfully been connected to bpmbox.",
     "registrationComplete": "Registration complete, you may now log in."
   }
 }
