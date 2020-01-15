@@ -2,6 +2,9 @@
   "app": {
     "title": "bpmbox"
   },
+  "Home": {
+    "title": ""
+  },
   "Login": {
     "title": "Login",
     "login_button": "Login"
