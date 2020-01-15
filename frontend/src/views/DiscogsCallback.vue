@@ -27,7 +27,7 @@ export default class DiscogsCallback extends Vue {
   }
 
   async discogsCallback() {
-    await this.axios.get("/discogs/callback", {
+    await this.axios.get("discogs/callback", {
       params: this.$route.query
     });
     await this.$auth.fetch({});
