@@ -2,14 +2,6 @@
   "app": {
     "title": "bpmbox"
   },
-  "AppBar": {
-    "login": "@:Login.login_button",
-    "register": "Register",
-    "logout": "Logout"
-  },
-  "Dashboard": {
-    "title": "Dashboard"
-  },
   "Login": {
     "title": "Login",
     "login_button": "Login"
@@ -17,6 +9,22 @@
   "Register": {
     "title": "Register",
     "register_button": "Register"
+  },
+  "Dashboard": {
+    "title": "Dashboard"
+  },
+  "DiscogsCallback": {
+    "title": "Hold on tight!"
+  },
+  "AppBar": {
+    "login": "@:Login.login_button",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "ConnectToDiscogs": {
+    "title": "Connect with Discogs",
+    "subtitle": "Give bpmbox access to your Discogs collection.",
+    "authorize": "Authorize"
   },
   "user": {
     "email": "Email",
@@ -28,5 +36,9 @@
     "required": "required",
     "confirmed": "must match {target} field",
     "email": "please enter a valid email address"
+  },
+  "notifications": {
+    "discogsAuthentication": "Your Discogs account has succesfully been connected to bpmbox.",
+    "registrationComplete": "Registration complete, you may now log in."
   }
 }
