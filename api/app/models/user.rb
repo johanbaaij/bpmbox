@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   def discogs_api
-    DiscogsApi.new(self)
+    Discogs::Authorizer.new(self)
   end
 end

@@ -22,7 +22,7 @@ import { Component, Vue } from "vue-property-decorator";
 })
 export default class ConnectToDiscogs extends Vue {
   async connectToDiscogs() {
-    const response = await this.axios.get("discogs/authenticate");
+    const response = await this.axios.get("discogs/authorize");
     window.location = response.data.url;
   }
 }

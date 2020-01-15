@@ -12,9 +12,12 @@ Rails.application.routes.draw do
     )
     get 'auth/user', controller: 'auth', action: 'user'
     get 'auth/refresh', controller: 'auth', action: 'refresh'
-    get 'discogs/authenticate', controller: 'discogs_auth', action: 'authenticate'
-    get 'discogs/callback', controller: 'discogs_auth', action: 'callback'
-    get 'discogs/collection', controller: 'discogs', action: 'collection'
+
+    namespace :discogs do
+      get 'authorize', controller: 'authorizer', action: 'authorize'
+      get 'callback', controller: 'authorizer', action: 'callback'
+    end
+
     resources :releases
     resources :artists
     resources :songs

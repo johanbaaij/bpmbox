@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AuthControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @email = users(:johan).email
+    @email = users(:no_discogs).email
     @password = 'secret123'
 
     @new_email = "newuser@gmail.com"
