@@ -1,26 +1,6 @@
 <template>
   <v-app v-if="$auth.ready()">
-    <v-app-bar app>
-      <v-toolbar-title
-        ><router-link :to="homeRoute">{{
-          $t("app.title")
-        }}</router-link></v-toolbar-title
-      >
-      <v-spacer></v-spacer>
-
-      <v-toolbar-items v-if="$auth.ready()">
-        <v-btn v-if="!$auth.check()" to="register" text>{{
-          $t("AppBar.register")
-        }}</v-btn>
-        <v-btn v-if="!$auth.check()" to="login" text>{{
-          $t("AppBar.login")
-        }}</v-btn>
-        <v-btn v-if="$auth.check()" @click="$auth.logout()" text>{{
-          $t("AppBar.logout")
-        }}</v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
-
+    <app-bar />
     <v-content>
       <Notifications />
       <router-view />
@@ -31,12 +11,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Notifications from "@/components/Notifications.vue";
+import AppBar from "@/components/AppBar.vue";
 import MetaInfo from "vue-meta";
 
 @Component({
   name: "app",
   components: {
-    Notifications
+    Notifications,
+    AppBar
   },
   metaInfo(): MetaInfo {
     return {
@@ -48,15 +30,5 @@ import MetaInfo from "vue-meta";
     };
   }
 })
-export default class App extends Vue {
-  get homeRoute() {
-    if (this.$auth.check())
-      return {
-        name: "dashboard"
-      };
-    return {
-      name: "home"
-    };
-  }
-}
+export default class App extends Vue {}
 </script>
