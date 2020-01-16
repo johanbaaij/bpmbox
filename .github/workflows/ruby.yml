@@ -22,7 +22,12 @@ jobs:
         uses: eregon/use-ruby-action@master
         with:
           ruby-version: 2.6
-      - name: Setup Database
+      - name: Run bundle install
+        working-directory: "./api"
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Setup database
         working-directory: "./api"
         run: |
           cp config/database.yml.github-actions config/database.yml
@@ -32,7 +37,7 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-      - name: Build and test with Rake
+      - name: Test
         env:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
@@ -40,6 +45,4 @@ jobs:
           POSTGRES_PASSWORD: postgres
         working-directory: "./api"
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
           bundle exec rake
