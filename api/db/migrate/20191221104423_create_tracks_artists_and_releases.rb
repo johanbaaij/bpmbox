@@ -1,23 +1,24 @@
 class CreateTracksArtistsAndReleases < ActiveRecord::Migration[6.0]
   def change
-    create_table :releases do |t|
-      t.string :title
-
-      t.timestamps
-    end
-
-    create_table :artists do |t|
+    create_table :artists, id: :uuid do |t|
       t.string :name
 
       t.timestamps
     end
 
-    create_table :tracks do |t|
+    create_table :releases, id: :uuid do |t|
+      t.string :title
+      t.references :artist, null: true, foreign_key: true, type: :uuid
+
+      t.timestamps
+    end
+
+    create_table :tracks, id: :uuid do |t|
       t.string :title
       t.string :track
       t.string :side
-      t.references :artist, null: true, foreign_key: true
-      t.references :release, null: true, foreign_key: true
+      t.references :artist, null: true, foreign_key: true, type: :uuid
+      t.references :release, null: true, foreign_key: true, type: :uuid
       t.decimal :bpm
       t.integer :key
 

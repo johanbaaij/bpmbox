@@ -16,16 +16,18 @@ ActiveRecord::Schema.define(version: 2020_01_15_111420) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "artists", force: :cascade do |t|
+  create_table "artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "releases", force: :cascade do |t|
+  create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
+    t.uuid "artist_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_releases_on_artist_id"
   end
 
   create_table "releases_users", id: false, force: :cascade do |t|
@@ -35,12 +37,12 @@ ActiveRecord::Schema.define(version: 2020_01_15_111420) do
     t.index ["user_id"], name: "index_releases_users_on_user_id"
   end
 
-  create_table "tracks", force: :cascade do |t|
+  create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "track"
     t.string "side"
-    t.bigint "artist_id"
-    t.bigint "release_id"
+    t.uuid "artist_id"
+    t.uuid "release_id"
     t.decimal "bpm"
     t.integer "key"
     t.datetime "created_at", precision: 6, null: false
@@ -76,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_111420) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "releases", "artists"
   add_foreign_key "tracks", "artists"
   add_foreign_key "tracks", "releases"
 end
