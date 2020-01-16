@@ -1,2 +1,4 @@
 development:
   client_url: "http://localhost:8080"
+production:
+  client_url: "https://bpmbox.baaij.com.au"
