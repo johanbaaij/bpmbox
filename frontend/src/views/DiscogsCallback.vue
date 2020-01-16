@@ -17,7 +17,7 @@ import EventBus from "@/utils/event-bus";
   name: "discogsCallback",
   metaInfo(): MetaInfo {
     return {
-      title: this.$i18n.t("Discogs.title") as string
+      title: this.$i18n.t("DiscogsCallback.title") as string
     };
   }
 })
