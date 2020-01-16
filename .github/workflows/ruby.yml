@@ -23,6 +23,7 @@ jobs:
         with:
           ruby-version: 2.6
       - name: Setup Database
+        working-directory: "./api"
         run: |
           cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create
