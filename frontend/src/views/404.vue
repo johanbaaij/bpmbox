@@ -3,7 +3,9 @@
     <v-row>
       <v-col>
         <p>404</p>
-        <p>Time to go <router-link to="home">home</router-link>.</p>
+        <p>
+          Time to go <router-link :to="{ name: 'home' }">home</router-link>.
+        </p>
       </v-col>
     </v-row>
   </v-container>
