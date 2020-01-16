@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_and_belongs_to_many :releases
+
   def discogs_user
     Discogs::User.new(self)
   end

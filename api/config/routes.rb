@@ -16,10 +16,7 @@ Rails.application.routes.draw do
     namespace :discogs do
       get 'authorize', controller: 'authorizer', action: 'authorize'
       get 'callback', controller: 'authorizer', action: 'callback'
+      get 'import_releases', controller: 'importer', action: 'import_releases'
     end
-
-    resources :releases
-    resources :artists
-    resources :songs
   end
 end

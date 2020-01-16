@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_125112) do
+ActiveRecord::Schema.define(version: 2020_01_15_111420) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -20,27 +24,32 @@ ActiveRecord::Schema.define(version: 2020_01_13_125112) do
 
   create_table "releases", force: :cascade do |t|
     t.string "title"
-    t.integer "artist_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artist_id"], name: "index_releases_on_artist_id"
   end
 
-  create_table "songs", force: :cascade do |t|
+  create_table "releases_users", id: false, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "release_id"
+    t.index ["release_id"], name: "index_releases_users_on_release_id"
+    t.index ["user_id"], name: "index_releases_users_on_user_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
     t.string "title"
     t.string "track"
     t.string "side"
-    t.integer "artist_id"
-    t.integer "release_id"
+    t.bigint "artist_id"
+    t.bigint "release_id"
     t.decimal "bpm"
     t.integer "key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artist_id"], name: "index_songs_on_artist_id"
-    t.index ["release_id"], name: "index_songs_on_release_id"
+    t.index ["artist_id"], name: "index_tracks_on_artist_id"
+    t.index ["release_id"], name: "index_tracks_on_release_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,15 +68,14 @@ ActiveRecord::Schema.define(version: 2020_01_13_125112) do
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.json "discogs_request_token"
-    t.json "discogs_access_token"
+    t.jsonb "discogs_request_token"
+    t.jsonb "discogs_access_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "releases", "artists"
-  add_foreign_key "songs", "artists"
-  add_foreign_key "songs", "releases"
+  add_foreign_key "tracks", "artists"
+  add_foreign_key "tracks", "releases"
 end
