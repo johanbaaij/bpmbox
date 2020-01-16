@@ -35,12 +35,10 @@ jobs:
         env:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         working-directory: "./api"
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
           bundle exec rake
-        env:
-          RAILS_ENV: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
