@@ -1,9 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  artist: one
-
-two:
-  title: MyString
-  artist: two
+oh_mercy:
+  title: "Oh Mercy"
+  artist: "Bob Dylan"

@@ -1,19 +1,51 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  track: MyString
-  side: MyString
-  artist: one
-  release: one
-  bpm: 9.99
-  key: 1
+political_world:
+  title: Political World
+  position: A1
+  release: oh_mercy
 
-two:
-  title: MyString
-  track: MyString
-  side: MyString
-  artist: two
-  release: two
-  bpm: 9.99
-  key: 1
+drops:
+  title: Where Teardrops Fall
+  position: A2
+  release: oh_mercy
+
+broken:
+  title: Everything Is Broken
+  position: A3
+  release: oh_mercy
+
+bells:
+  title: Ring Them Bells
+  position: A4
+  release: oh_mercy
+
+coat:
+  title: Man in The Long Black Coat
+  position: A5
+  release: oh_mercy
+
+time:
+  title: Most Of The Time
+  position: B1
+  release: oh_mercy
+
+good:
+  title: What Good Am I?
+  position: B2
+  release: oh_mercy
+
+conceit:
+  title: Disease Of Conceit
+  position: B3
+  release: oh_mercy
+
+wanted:
+  title: What Was It You Wanted
+  position: B4
+  release: oh_mercy
+
+star:
+  title: Shooting Star
+  position: B5
+  release: oh_mercy

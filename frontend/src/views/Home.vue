@@ -1,7 +1,14 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col><h1>Home</h1></v-col>
+      <v-col
+        ><p>{{ $t("Home.instructions") }}</p></v-col
+      >
+    </v-row>
+    <v-row class="fill-height">
+      <v-col>
+        <search-discogs />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -9,6 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
+import SearchDiscogs from "@/components/SearchDiscogs.vue";
 
 @Component({
   name: "home",
@@ -16,6 +24,9 @@ import MetaInfo from "vue-meta";
     return {
       title: this.$i18n.t("Home.title") as string
     };
+  },
+  components: {
+    SearchDiscogs
   }
 })
 export default class Home extends Vue {}

@@ -14,9 +14,9 @@ module Discogs
 
     def import
       collection = @wrapper.get_user_collection(@wrapper.get_identity.username)
-      collection.releases.each do |release|
-        @artist = Artist.create(name: release.basic_information.artists.pluck("name").join(release.basic_information.artists.join))
-        @release = Release.create(title: release.basic_information.title, artist: @artist)
+      collection.releases.each do |release_hash|
+        @discogs_release = Discogs::Responses::Release.new(release_hash.basic_information)
+        @release = @discogs_release.to_release
         @user.releases << @release
         @user.save
       end
