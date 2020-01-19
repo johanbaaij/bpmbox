@@ -1,5 +1,8 @@
-import { expect } from "chai";
+import "./setup";
+
+// Dependencies
 import Vuetify from "vuetify";
+import i18n from "@/plugins/i18n";
 
 // Components
 import Home from "../../src/views/Home.vue";
@@ -16,10 +19,12 @@ describe("Home.vue", () => {
     vuetify = new Vuetify();
   });
 
-  it("should render", () => {
+  it("should match snapshot", () => {
     const wrapper = mount(Home, {
-      localVue
+      localVue,
+      vuetify,
+      i18n
     });
-    expect(wrapper.find("h1").contains("Home"));
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });

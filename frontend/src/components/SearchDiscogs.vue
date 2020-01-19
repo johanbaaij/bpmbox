@@ -7,7 +7,7 @@
     <ValidationProvider rules="required|url" v-slot="{ errors }">
       <v-text-field
         prepend-inner-icon="mdi-magnify"
-        :placeholder="$t('DiscogsSearch.placeholder')"
+        :placeholder="$t('SearchDiscogs.placeholder')"
         :error-messages="errors"
         single-line
         v-model="model"

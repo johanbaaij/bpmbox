@@ -1,7 +1,7 @@
 import { required, email, confirmed } from "vee-validate/dist/rules";
 import isURL from "validator/lib/isURL";
 import { extend } from "vee-validate";
-import i18n from "@/i18n";
+import i18n from "@/plugins/i18n";
 
 extend("required", {
   ...required,
