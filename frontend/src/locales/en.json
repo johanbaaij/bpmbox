@@ -3,7 +3,13 @@
     "title": "bpmbox"
   },
   "Home": {
-    "title": ""
+    "title": "",
+    "instructions": "Enter a release URL."
+  },
+  "Releases": {
+    "title": "Releases",
+    "new": "New",
+    "importFromDiscogs": "Import from Discogs"
   },
   "Login": {
     "title": "Login",
@@ -29,6 +35,9 @@
     "subtitle": "Give bpmbox access to your Discogs collection.",
     "authorize": "Authorize"
   },
+  "SearchDiscogs": {
+    "placeholder": "https://www.discogs.com/Various-20-Jahre-Kompakt-Kollektion-2/release/5267551"
+  },
   "user": {
     "email": "Email",
     "password": "Password",
@@ -38,7 +47,8 @@
   "errors": {
     "required": "required",
     "confirmed": "must match {target} field",
-    "email": "please enter a valid email address"
+    "email": "please enter a valid email address",
+    "url": "please enter a valid URL"
   },
   "notifications": {
     "discogsAuthenticationComplete": "Your Discogs account has succesfully been connected to bpmbox.",

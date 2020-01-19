@@ -12,8 +12,9 @@ Rails.application.routes.draw do
     )
     get 'auth/user', controller: 'auth', action: 'user'
     get 'auth/refresh', controller: 'auth', action: 'refresh'
-
+    get 'release/:id', controller: 'releases', action: 'show'
     namespace :discogs do
+      get 'url/redirect', controller: 'url', action: 'redirect'
       get 'authorize', controller: 'authorizer', action: 'authorize'
       get 'callback', controller: 'authorizer', action: 'callback'
       get 'import_releases', controller: 'importer', action: 'import_releases'

@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-import Releases from "@/views/Releases";
 import DiscogsCallback from "@/views/DiscogsCallback.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
@@ -15,13 +14,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
-  },
-  {
-    path: "/releases",
-    name: "releases",
-    component: Releases,
-    meta: { auth: true }
+    component: Home
   },
   {
     path: "/404",

@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
     "typeRoots": [
@@ -18,12 +19,11 @@
     ],
     "types": [
       "webpack-env",
-      "mocha",
-      "chai",
       "vuetify",
       "webpack",
       "webpack-env",
-      "vue-meta"
+      "vue-meta",
+      "jest"
     ],
     "paths": {
       "@/*": ["src/*"]
