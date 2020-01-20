@@ -1,6 +1,7 @@
 class ReleasesController < ApplicationController
+  include JSONAPI::Fetching
   def show
-    @release = Release.find_by_discogs_id(params[:id])
+    @release = Release.from_discogs_id(params[:discogs_id])
     render jsonapi: @release
   end
 end

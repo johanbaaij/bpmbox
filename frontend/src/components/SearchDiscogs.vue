@@ -4,15 +4,13 @@
     v-slot="{ handleSubmit, invalid }"
     mode="aggressive"
   >
-    <ValidationProvider rules="required|url" v-slot="{ errors }">
+    <ValidationProvider rules="required" v-slot="{ errors }">
       <v-text-field
         prepend-inner-icon="mdi-magnify"
         :placeholder="$t('SearchDiscogs.placeholder')"
         :error-messages="errors"
         single-line
-        v-model="model"
-        :loading="isLoading"
-        cache-items
+        v-model="discogsId"
         solo
       >
         <template v-slot:append>
@@ -38,18 +36,15 @@ import { ValidationProvider, ValidationObserver } from "vee-validate";
   }
 })
 export default class SearchDiscogs extends Vue {
-  isLoading = false;
-  model = null;
+  discogsId!: string | null;
   response = null;
 
   async submit() {
-    this.isLoading = true;
-    this.response = await this.axios.get("discogs/url/redirect", {
-      params: {
-        url: this.model
-      }
+    if (this.discogsId === null) return;
+    this.$router.push({
+      name: "release",
+      params: { discogsId: this.discogsId }
     });
-    this.isLoading = false;
   }
 }
 </script>

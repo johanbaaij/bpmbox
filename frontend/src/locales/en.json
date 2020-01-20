@@ -4,7 +4,7 @@
   },
   "Home": {
     "title": "",
-    "instructions": "Enter a release URL."
+    "instructions": "Enter a release id."
   },
   "Releases": {
     "title": "Releases",
@@ -36,7 +36,7 @@
     "authorize": "Authorize"
   },
   "SearchDiscogs": {
-    "placeholder": "https://www.discogs.com/Various-20-Jahre-Kompakt-Kollektion-2/release/5267551"
+    "placeholder": "5267551"
   },
   "user": {
     "email": "Email",
