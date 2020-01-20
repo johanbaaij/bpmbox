@@ -4,11 +4,11 @@ exports[`Home.vue should match snapshot 1`] = `
 <div class="container container--fluid">
   <div class="row">
     <div class="col">
-      <p>Enter a release URL.</p>
+      <p>Enter a release id.</p>
     </div>
   </div>
   <div class="row fill-height">
-    <div class="col"><span name="model" mode="aggressive"><span><div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"><div class="v-input__control"><div class="v-input__slot"><div class="v-input__prepend-inner"><div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-magnify theme--light"></i></div></div><div class="v-text-field__slot"><input cache-items="" id="input-8" placeholder="https://www.discogs.com/Various-20-Jahre-Kompakt-Kollektion-2/release/5267551" type="text"></div><div class="v-input__append-inner"><button type="button" class="v-btn v-btn--contained theme--light v-size--default"><span class="v-btn__content">Go</span></button></div>
+    <div class="col"><span name="model" mode="aggressive"><span><div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"><div class="v-input__control"><div class="v-input__slot"><div class="v-input__prepend-inner"><div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-magnify theme--light"></i></div></div><div class="v-text-field__slot"><input id="input-8" placeholder="5267551" type="text"></div><div class="v-input__append-inner"><button type="button" class="v-btn v-btn--contained theme--light v-size--default"><span class="v-btn__content">Go</span></button></div>
   </div>
   <div class="v-text-field__details">
     <div class="v-messages theme--light">
