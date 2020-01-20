@@ -36,7 +36,7 @@ import { ValidationProvider, ValidationObserver } from "vee-validate";
   }
 })
 export default class SearchDiscogs extends Vue {
-  discogsId!: string | null = null;
+  discogsId: string | null = null;
   response = null;
 
   async submit() {

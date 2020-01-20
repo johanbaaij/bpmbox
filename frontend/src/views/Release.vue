@@ -46,7 +46,7 @@ export default class Release extends Vue {
     },
     {
       text: "Artist",
-      value: "artist"
+      value: "artist_txt"
     },
     {
       text: "Title",
@@ -77,6 +77,7 @@ export default class Release extends Vue {
   get tracks() {
     return Object.values(this.release.tracks).map((track: any) => ({
       position: track.position,
+      artist_txt: track.artist_txt,
       title: track.title,
       bpm: track.bpm,
       duration: track.duration,
