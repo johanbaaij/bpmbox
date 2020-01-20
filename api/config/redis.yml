@@ -3,4 +3,4 @@ default: &default
   db: 1
 
 production:
-  url: ENV["REDIS_URL"]
+  url: <%= ENV["REDIS_URL"] %>
