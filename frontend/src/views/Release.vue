@@ -75,7 +75,6 @@ export default class Release extends Vue {
   }
 
   get tracks() {
-    console.log(this.release.tracks);
     return Object.values(this.release.tracks).map((track: any) => ({
       position: track.position,
       title: track.title,
