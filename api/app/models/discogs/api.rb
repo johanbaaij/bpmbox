@@ -2,9 +2,11 @@
 
 module Discogs
   class Api
+    delegate :raw, to: :wrapper
+
     def initialize(user = nil)
       if user.present?
-        @discogs_user = DiscogsUser.new(user)
+        @discogs_user = Discogs::User.new(user)
         @authenticated = @discogs_user.authenticated?
       else
         @authenticated = false
@@ -17,10 +19,22 @@ module Discogs
       end
     end
 
+    def get_user(username)
+      wrapper.get_user(username)
+    end
+
+    def get_user_collection(username)
+      wrapper.get_user_collection(username, per_page: 100)
+    end
+
+    def search(term)
+      wrapper.search(term)
+    end
+
     protected
 
     def wrapper
-      @wrapper = Discogs::Wrapper.new('bpmbox', access_token)
+      @wrapper = Discogs::Wrapper.new('bpmbox/0.1 +https://bpmbox.baaij.com.au', access_token)
     end
 
     def access_token

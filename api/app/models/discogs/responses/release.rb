@@ -12,11 +12,17 @@ module Discogs
       end
 
       def to_release
-        @release = ::Release.new
-        @release.title = title
-        @release.artist = artist_txt
-        @release.tracks = tracks
-        @release.discogs_id = discogs_id
+        @release = ::Release.find_or_initialize_by(
+          discogs_release_id: @hash.id
+        )
+
+        if @release.new_record?
+          @release.title = title
+          @release.artist = artist_txt
+          @release.tracks = tracks
+          @release.discogs_release_id = @hash.id
+        end
+
         @release
       end
 
@@ -36,10 +42,6 @@ module Discogs
         @hash.tracklist.map do |track_hash|
           Track.new(track_hash, artist_txt).to_track
         end
-      end
-
-      def discogs_id
-        @hash.id
       end
     end
   end

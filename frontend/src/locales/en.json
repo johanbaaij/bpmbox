@@ -1,10 +1,10 @@
 {
   "app": {
-    "title": "bpmbox"
+    "title": "bpmbox",
+    "subtitle": "Find every BPM in your Discogs collection"
   },
   "Home": {
-    "title": "",
-    "instructions": "Enter a release id."
+    "title": ""
   },
   "Releases": {
     "title": "Releases",
@@ -35,8 +35,8 @@
     "subtitle": "Give bpmbox access to your Discogs collection.",
     "authorize": "Authorize"
   },
-  "SearchDiscogs": {
-    "placeholder": "5267551"
+  "SearchDiscogsUsername": {
+    "instructions": "Enter your Discogs username to get started."
   },
   "user": {
     "email": "Email",

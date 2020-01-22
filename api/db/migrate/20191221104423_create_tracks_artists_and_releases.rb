@@ -9,6 +9,7 @@ class CreateTracksArtistsAndReleases < ActiveRecord::Migration[6.0]
     create_table :releases, id: :uuid do |t|
       t.string :title
       t.string :artist
+      t.bigint :discogs_release_id
 
       t.timestamps
     end
@@ -24,5 +25,8 @@ class CreateTracksArtistsAndReleases < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :releases, :discogs_release_id
+
   end
 end

@@ -4,22 +4,34 @@ exports[`Home.vue should match snapshot 1`] = `
 <div class="container container--fluid">
   <div class="row">
     <div class="col">
-      <p>Enter a release id.</p>
+      <h1>bpmbox</h1>
+      <h2>Find every BPM in your Discogs collection</h2>
     </div>
   </div>
-  <div class="row fill-height">
-    <div class="col"><span name="model" mode="aggressive"><span><div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"><div class="v-input__control"><div class="v-input__slot"><div class="v-input__prepend-inner"><div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-magnify theme--light"></i></div></div><div class="v-text-field__slot"><input id="input-8" placeholder="5267551" type="text"></div><div class="v-input__append-inner"><button type="button" class="v-btn v-btn--contained theme--light v-size--default"><span class="v-btn__content">Go</span></button></div>
-  </div>
-  <div class="v-text-field__details">
-    <div class="v-messages theme--light">
-      <div class="v-messages__wrapper"></div>
+  <div class="row">
+    <div class="col">
+      <div>
+        <p>Enter your Discogs username to get started.</p>
+        <div class="v-input theme--light v-text-field v-text-field--prefix v-text-field--single-line v-text-field--solo v-text-field--enclosed">
+          <div class="v-input__control">
+            <div class="v-input__slot">
+              <div class="v-input__prepend-inner">
+                <div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div>
+              </div>
+              <div class="v-text-field__slot">
+                <div class="v-text-field__prefix">https://www.discogs.com/user/</div><input id="input-6" type="text">
+              </div>
+            </div>
+            <div class="v-text-field__details">
+              <div class="v-messages theme--light">
+                <div class="v-messages__wrapper"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
+      </div>
     </div>
   </div>
-</div>
-</div></span>
-<p>
-
-</p></span></div>
-</div>
 </div>
 `;

@@ -12,12 +12,13 @@ Rails.application.routes.draw do
     )
     get 'auth/user', controller: 'auth', action: 'user'
     get 'auth/refresh', controller: 'auth', action: 'refresh'
-    get 'release/:discogs_id', controller: 'releases', action: 'show'
+
+    get 'collections/new/:username', controller: 'collections', action: 'new'
+    get 'collections/import/:username', controller: 'collections', action: 'import'
+
     namespace :discogs do
-      get 'url/redirect', controller: 'url', action: 'redirect'
       get 'authorize', controller: 'authorizer', action: 'authorize'
       get 'callback', controller: 'authorizer', action: 'callback'
-      get 'import_releases', controller: 'importer', action: 'import_releases'
     end
   end
 end
