@@ -36,7 +36,11 @@
     "authorize": "Authorize"
   },
   "SearchDiscogsUsername": {
-    "instructions": "Enter your Discogs username to get started."
+    "instructions": "Enter your Discogs username to get started.",
+    "card": {
+      "text": "{num_collection} items.",
+      "button": "Import"
+    }
   },
   "user": {
     "email": "Email",

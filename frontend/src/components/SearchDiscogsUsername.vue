@@ -5,6 +5,7 @@
     <v-text-field
       prepend-inner-icon="mdi-account"
       :error-messages="errors"
+      :loading="loading"
       single-line
       v-model="username"
       prefix="https://www.discogs.com/user/"
@@ -13,12 +14,23 @@
     </v-text-field>
 
     <v-card v-if="numCollection > 0">
-      <v-card-title>Blab</v-card-title>
+      <v-card-title>
+        {{ response.data.username }}
+      </v-card-title>
       <v-card-text>
-        yada yada yada
+        <v-img :src="response.data.avatar_url" width="92"></v-img>
+        <p>
+          {{
+            $t("SearchDiscogsUsername.card.text", {
+              num_collection: response.data.num_collection
+            })
+          }}
+        </p>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="importCollection" text>Button</v-btn>
+        <v-btn @click="importCollection" text>{{
+          $t("SearchDiscogsUsername.card.button")
+        }}</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -39,6 +51,7 @@ import { AxiosResponse } from "axios";
 })
 export default class SearchDiscogsUsername extends Vue {
   searched = false;
+  loading = false;
   username: string | null = null;
   search: string | null = null;
   response: AxiosResponse | null = null;
@@ -53,8 +66,10 @@ export default class SearchDiscogsUsername extends Vue {
   }
 
   async onDebouncedUsername() {
+    this.loading = true;
     this.response = await this.axios.get(`collections/new/${this.username}`);
     this.searched = true;
+    this.loading = false;
   }
 
   importCollection() {
