@@ -3,6 +3,8 @@
 module Overrides
   module DeviseTokenAuth
     class SessionsController < ::DeviseTokenAuth::SessionsController
+      include JSONAPI::Errors
+
       # Prevent session parameter from being passed
       # Unpermitted parameter: session
       wrap_parameters format: []

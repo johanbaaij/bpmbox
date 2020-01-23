@@ -1,3 +1,5 @@
 ---
 :queues:
-  - bpmbox_default
+  - discogs
+  - spotify
+  - default

@@ -5,7 +5,8 @@ import DiscogsCallback from "@/views/DiscogsCallback.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
 import FourOhFour from "@/views/404.vue";
-import Release from "@/views/Release.vue";
+import Collection from "@/views/Collection.vue";
+import CollectionTracks from "@/views/CollectionTracks.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import EventBus from "@/utils/event-bus";
 
@@ -18,10 +19,11 @@ const routes = [
     component: Home
   },
   {
-    path: "/releases/:discogsId",
-    name: "release",
-    component: Release,
-    props: true
+    path: "/collection/:username",
+    name: "collection",
+    component: Collection,
+    props: true,
+    children: [{ path: "", component: CollectionTracks }]
   },
   {
     path: "/404",

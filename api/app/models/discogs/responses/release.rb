@@ -4,11 +4,9 @@ module Discogs
   module Responses
     class Release
       def initialize(hash)
-        if hash.class == Hashie::Mash
-          @hash = hash
-        else
-          raise 'Needs to be a Hashie::Mash'
-        end
+        raise 'Needs to be a Hashie::Mash' unless hash.class == Hashie::Mash
+
+        @hash = hash
       end
 
       def to_release
@@ -16,12 +14,12 @@ module Discogs
           discogs_release_id: @hash.id
         )
 
-        if @release.new_record?
-          @release.title = title
-          @release.artist = artist_txt
-          @release.tracks = tracks
-          @release.discogs_release_id = @hash.id
-        end
+        @release.title = title
+        @release.artist = artist_txt
+        @release.tracks = tracks
+        @release.discogs_release_id = @hash.id
+        @release.discogs_response = @hash
+        @release.imported_at = DateTime.now
 
         @release
       end
@@ -31,9 +29,7 @@ module Discogs
       end
 
       def artist_txt
-        @hash.artists.map do |artist|
-          "#{artist.name} #{artist.join} "
-        end.join.strip
+        @hash.artists_sort
       end
 
       def tracks

@@ -43,7 +43,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_230720) do
   create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "artist"
+    t.jsonb "discogs_response"
     t.bigint "discogs_release_id"
+    t.datetime "imported_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["discogs_release_id"], name: "index_releases_on_discogs_release_id"
@@ -58,16 +60,15 @@ ActiveRecord::Schema.define(version: 2020_01_20_230720) do
   end
 
   create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title"
     t.string "position"
+    t.string "title"
+    t.string "artist"
     t.decimal "bpm"
-    t.integer "key"
     t.integer "duration"
-    t.uuid "artist_id"
+    t.integer "key"
     t.uuid "release_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["artist_id"], name: "index_tracks_on_artist_id"
     t.index ["release_id"], name: "index_tracks_on_release_id"
   end
 
@@ -103,6 +104,5 @@ ActiveRecord::Schema.define(version: 2020_01_20_230720) do
   add_foreign_key "collections_releases", "releases"
   add_foreign_key "releases_users", "releases"
   add_foreign_key "releases_users", "users"
-  add_foreign_key "tracks", "artists"
   add_foreign_key "tracks", "releases"
 end

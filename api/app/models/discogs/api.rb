@@ -14,9 +14,7 @@ module Discogs
     end
 
     def get_release(discogs_id)
-      Rails.cache.fetch("release/#{discogs_id}") do
-        wrapper.get_release(discogs_id)
-      end
+      wrapper.get_release(discogs_id)
     end
 
     def get_user(username)
@@ -34,7 +32,7 @@ module Discogs
     protected
 
     def wrapper
-      @wrapper = Discogs::Wrapper.new('bpmbox/0.1 +https://bpmbox.baaij.com.au', access_token)
+      @wrapper = Discogs::Wrapper.new(Rails.configuration.settings['api_user_agent'], access_token)
     end
 
     def access_token

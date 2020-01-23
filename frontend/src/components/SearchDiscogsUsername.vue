@@ -67,13 +67,15 @@ export default class SearchDiscogsUsername extends Vue {
 
   async onDebouncedUsername() {
     this.loading = true;
-    this.response = await this.axios.get(`collections/new/${this.username}`);
+    this.response = await this.axios.get(
+      `collections/${this.username}/discogs_lookup`
+    );
     this.searched = true;
     this.loading = false;
   }
 
   importCollection() {
-    this.axios.get(`collections/import/${this.username}`);
+    this.axios.post(`collections/${this.username}/import`);
   }
 
   get numCollection() {

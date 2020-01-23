@@ -1,4 +1,5 @@
 class AuthController < ApplicationController
+  include JSONAPI::Errors
   before_action :authenticate_user!
 
   def user
@@ -7,7 +8,7 @@ class AuthController < ApplicationController
 
   def refresh
     render json: {
-      status: "success",
+      status: "success"
     }
   end
 end

@@ -6,8 +6,9 @@ class Release < ApplicationRecord
   has_many :collections, through: :collection_releases
   has_many :collection_releases
 
-  def self.from_discogs_id(resource_id)
-    @response = Discogs::Api.new.get_release(resource_id)
-    Discogs::Responses::Release.new(@response).to_release
+  after_create :fetch_tracks
+
+  def fetch_tracks
+    ImportDiscogsReleaseJob.perform_async(discogs_release_id)
   end
 end
