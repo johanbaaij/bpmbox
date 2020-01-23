@@ -30,11 +30,4 @@ class CollectionTest < ActiveSupport::TestCase
     assert collection.releases.last.title == 'Title'
     assert collection.releases.last.persisted?
   end
-
-  test 'Gracefully fails when adding a duplicate release' do
-    collection = collections(:bpmbox)
-    collection.releases << releases(:oh_mercy)
-    collection.save
-    collection.releases << releases(:oh_mercy)
-  end
 end

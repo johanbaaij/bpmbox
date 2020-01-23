@@ -29,9 +29,13 @@ class Collection < ApplicationRecord
     end
   end
 
+  def discogs_user
+    Discogs::Api.new.get_user(username)
+  end
+
   def must_exist_on_discogs
-    if Discogs::Api.new.get_user(username).resource_url.nil?
-      errors.add(:base, :discogs_user_must_exist, message: user.message)
+    if discogs_user.resource_url.nil?
+      errors.add(:base, :discogs_user_must_exist, message: discogs_user.message)
     end
   end
 
