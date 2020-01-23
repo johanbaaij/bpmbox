@@ -12,22 +12,4 @@ class CollectionTest < ActiveSupport::TestCase
     @collection = Collection.new(username: 'johanbaaij')
     assert @collection.valid?
   end
-
-  test 'Can add an existing release to a collection' do
-    collection = collections(:bpmbox)
-    oh_mercy = releases(:oh_mercy)
-    collection.releases << oh_mercy
-    collection.reload
-    assert collection.releases.last.title == oh_mercy.title
-    assert collection.releases.last.persisted?
-  end
-
-  test 'Can add a new release to a collection' do
-    collection = collections(:bpmbox)
-    new_release = Release.new(title: 'Title', artist: 'Artist')
-    collection.releases << new_release
-    collection.reload
-    assert collection.releases.last.title == 'Title'
-    assert collection.releases.last.persisted?
-  end
 end

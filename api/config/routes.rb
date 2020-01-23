@@ -16,9 +16,13 @@ Rails.application.routes.draw do
     get 'auth/user', controller: 'auth', action: 'user'
     get 'auth/refresh', controller: 'auth', action: 'refresh'
 
-    get 'collections/:username/discogs_lookup', controller: 'collections', action: 'discogs_lookup'
-    post 'collections/:username/import', controller: 'collections', action: 'import'
-    get 'collections/:username/tracks', controller: 'tracks', action: 'index'
+    resources :collections, param: :username, only: [] do
+      member do
+        get :discogs_lookup
+        post :import
+      end
+      resources :tracks, only: [:index]
+    end
 
     namespace :discogs do
       get 'authorize', controller: 'authorizer', action: 'authorize'
