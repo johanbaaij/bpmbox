@@ -1,0 +1,6 @@
+default: &default
+  url: redis://localhost:6379
+  db: 1
+
+production:
+  url: <%= ENV["REDIS_URL"] %>

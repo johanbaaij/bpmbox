@@ -32,3 +32,4 @@ jobs:
           yarn test:unit
         env:
           CI: true
+          BUILD_MODE: test

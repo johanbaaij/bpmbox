@@ -1,4 +1,8 @@
 development:
   client_url: "http://localhost:8080"
+  api_user_agent: "bpmbox_development/0.1 +http://localhost:3000"
+test:
+  api_user_agent: "bpmbox_test/0.1 +https://bpmbox.baaij.com.au"
 production:
   client_url: "https://bpmbox.baaij.com.au"
+  api_user_agent: "bpmbox/0.1 +https://bpmbox.baaij.com.au"

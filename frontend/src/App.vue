@@ -1,6 +1,5 @@
 <template>
   <v-app v-if="$auth.ready()">
-    <app-bar />
     <v-content>
       <Notifications />
       <router-view />

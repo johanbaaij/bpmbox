@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-oh_mercy:
-  title: "Oh Mercy"
-  artist: "Bob Dylan"
-  discogs_release_id: 831310
+johanbaaij:
+  username: johanbaaij
+
+bpmbox:
+  username: bpmbox

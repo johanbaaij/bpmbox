@@ -5,7 +5,8 @@
         $t("app.title")
       }}</router-link></v-toolbar-title
     >
-    <v-toolbar-items class="ml-2" v-if="$auth.ready()">
+    <v-spacer />
+    <v-toolbar-items class="ml-2">
       <v-btn v-if="!$auth.check()" to="register" text>{{
         $t("AppBar.register")
       }}</v-btn>
