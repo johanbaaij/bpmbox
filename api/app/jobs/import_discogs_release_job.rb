@@ -7,24 +7,31 @@ class ImportDiscogsReleaseJob
 
   sidekiq_throttle(
     concurrency: { limit: 1 },
-    threshold: { limit: 1, period: 5.seconds }
+    threshold: { limit: 1, period: 3.seconds }
   )
 
   def perform(release_id)
     @release_id = release_id
-    @release = Release.find_by(discogs_release_id: release_id)
-    response = fetch_api_release
-
-    unless response.resource_url && response.id
-      raise "#{response}"
-    end
-
-    hash_release = Discogs::Responses::Release.new(response).to_release
-    @release.tracks << hash_release.tracks
+    find_release
+    fetch_discogs_release
+    add_extra_data_to_release
+    ImportSpotifyAudioFeaturesJob.perform_async(@release_id)
   end
 
-  def fetch_api_release
-    api = Discogs::Api.new
-    api.get_release(@release_id)
+  def find_release
+    @release = Release.find_by(discogs_release_id: @release_id)
+    raise 'Release not found' unless @release.present?
+  end
+
+  def fetch_discogs_release
+    @response = Discogs::Api.new.get_release(@release_id)
+    raise @response.to_s unless @response.resource_url && @response.id
+  end
+
+  def add_extra_data_to_release
+    release = Discogs::Responses::Release
+              .new(@response)
+              .to_release
+    release.save
   end
 end

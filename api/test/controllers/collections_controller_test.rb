@@ -13,6 +13,6 @@ class CollectionsControllerTest < ActionDispatch::IntegrationTest
     get discogs_lookup_collection_path(username: 'johanbaaij'), as: :json
     assert_equal 200, response.status
     assert_not_empty response.parsed_body['resource_url']
-    assert_kind_of Integer, response.parsed_body['num_collection']
+    assert_not_nil response.parsed_body['num_collection']
   end
 end

@@ -3,15 +3,14 @@
 module Discogs
   module Responses
     class Track
-      def initialize(hash, artist_txt)
+      def initialize(hash)
         @hash = hash
-        @artist_txt = artist_txt
       end
 
       def to_track
         ::Track.new(
           id: SecureRandom.uuid,
-          artist_txt: artist,
+          artist: artist,
           title: @hash.title,
           position: @hash.position,
           duration: duration_in_seconds
@@ -27,13 +26,11 @@ module Discogs
       end
 
       def artist
-        if @hash.artists.present?
-          @hash.artists.map do |artist|
-            "#{artist.name} #{artist.join} "
-          end.join.strip
-        else
-          @artist_txt
-        end
+        return unless @hash.artists.present?
+
+        @hash.artists.map do |artist|
+          "#{artist.name} #{artist.join} "
+        end.join.strip
       end
     end
   end

@@ -63,9 +63,11 @@ ActiveRecord::Schema.define(version: 2020_01_20_230720) do
     t.string "position"
     t.string "title"
     t.string "artist"
+    t.jsonb "spotify_response"
     t.decimal "bpm"
     t.integer "duration"
     t.integer "key"
+    t.datetime "imported_at"
     t.uuid "release_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

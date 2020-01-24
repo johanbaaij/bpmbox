@@ -1,8 +1,7 @@
 class CollectionsController < ApplicationController
   def discogs_lookup
     @collection = Collection.find_or_initialize_by(username: params[:username])
-    user_details = @collection.discogs_user
-    render json: user_details
+    render jsonapi: @collection
   end
 
   def import

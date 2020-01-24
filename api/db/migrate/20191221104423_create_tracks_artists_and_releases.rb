@@ -20,9 +20,11 @@ class CreateTracksArtistsAndReleases < ActiveRecord::Migration[6.0]
       t.string :position
       t.string :title
       t.string :artist
+      t.jsonb :spotify_response
       t.decimal :bpm
       t.integer :duration
       t.integer :key
+      t.datetime :imported_at
       t.references :release, null: true, foreign_key: true, type: :uuid
 
       t.timestamps

@@ -1,7 +1,10 @@
 <template>
-  <v-col>
-    <v-data-table />
-  </v-col>
+  <v-data-table
+    fixed-header
+    disable-pagination
+    :items="tracks"
+    :headers="headers"
+  />
 </template>
 
 <script lang="ts">
@@ -17,14 +20,54 @@ import MetaInfo from "vue-meta";
   }
 })
 export default class CollectionTracks extends Vue {
-  mounted() {
+  loaded = false;
+  headers = [
+    {
+      text: "Position",
+      value: "position",
+      sortable: false
+    },
+    {
+      text: "Release",
+      value: "release",
+      sortable: true
+    },
+    {
+      text: "Artist",
+      value: "artist",
+      sortable: true
+    },
+    {
+      text: "Title",
+      value: "title",
+      sortable: true
+    },
+    {
+      text: "BPM",
+      value: "bpm",
+      sortable: true
+    },
+    {
+      text: "Key",
+      value: "key",
+      sortable: true
+    }
+  ];
+
+  async mounted() {
     const data = { _jv: { type: "track" } };
     const username = this.$route.params.username;
-    this.$store
-      .dispatch("jv/get", [data, { url: `/collections/${username}/tracks` }])
-      .then(data => {
-        console.log(data);
-      });
+    await this.$store.dispatch("jv/get", [
+      data,
+      { url: `/collections/${username}/tracks` }
+    ]);
+    this.loaded = true;
+  }
+
+  get tracks() {
+    return Object.values(
+      this.$store.getters["jv/get"]({ _jv: { type: "track" } })
+    );
   }
 }
 </script>

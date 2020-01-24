@@ -15,14 +15,18 @@
 
     <v-card v-if="numCollection > 0">
       <v-card-title>
-        {{ response.data.username }}
+        {{ response.data.data.attributes.username }}
       </v-card-title>
       <v-card-text>
-        <v-img :src="response.data.avatar_url" width="92"></v-img>
+        <v-img
+          :src="response.data.data.attributes.discogs_user.avatar_url"
+          width="92"
+        ></v-img>
         <p>
           {{
             $t("SearchDiscogsUsername.card.text", {
-              num_collection: response.data.num_collection
+              num_collection:
+                response.data.data.attributes.discogs_user.num_collection
             })
           }}
         </p>
@@ -74,12 +78,15 @@ export default class SearchDiscogsUsername extends Vue {
     this.loading = false;
   }
 
-  importCollection() {
-    this.axios.post(`collections/${this.username}/import`);
+  async importCollection() {
+    await this.axios.post(`collections/${this.username}/import`);
+    this.$router.push(`collections/${this.username}`);
   }
 
   get numCollection() {
-    return this.response?.data?.num_collection || 0;
+    return (
+      this.response?.data?.data?.attributes?.discogs_user?.num_collection || 0
+    );
   }
 
   get errors() {

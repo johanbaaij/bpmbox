@@ -15,7 +15,7 @@ module Discogs
         )
 
         @release.title = title
-        @release.artist = artist_txt
+        @release.artist = artist
         @release.tracks = tracks
         @release.discogs_release_id = @hash.id
         @release.discogs_response = @hash
@@ -28,7 +28,7 @@ module Discogs
         @hash.title
       end
 
-      def artist_txt
+      def artist
         @hash.artists_sort
       end
 
@@ -36,7 +36,7 @@ module Discogs
         return [] if @hash.tracklist.nil?
 
         @hash.tracklist.map do |track_hash|
-          Track.new(track_hash, artist_txt).to_track
+          Track.new(track_hash).to_track
         end
       end
     end

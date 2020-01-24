@@ -20,7 +20,7 @@ module Discogs
 
       test 'Response::Release extracts properties correctly' do
         release_hash = Discogs::Responses::Release.new(@response)
-        assert_equal release_hash.artist_txt, "Bob Dylan"
+        assert_equal release_hash.artist, "Bob Dylan"
         assert_equal release_hash.title, "Oh Mercy"
       end
 

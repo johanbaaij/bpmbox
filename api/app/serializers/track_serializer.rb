@@ -2,5 +2,9 @@
 
 class TrackSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :duration, :bpm, :position, :title, :artist_txt
+  attributes :duration, :bpm, :position, :title, :artist
+
+  attribute :release do |track|
+    track.release.title
+  end
 end
