@@ -11,7 +11,7 @@ class ImportSpotifyAudioFeaturesJob
   )
 
   def perform(release_id, username)
-    release = Release.find_by(discogs_release_id: release_id)
+    release = Release.find_or_initialize_by(discogs_release_id: release_id)
 
     track_audio_features = {}
     track_ids = []
