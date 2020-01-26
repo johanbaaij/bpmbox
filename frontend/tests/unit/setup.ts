@@ -5,6 +5,6 @@ Vue.use(Vuetify);
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: "error",
-  connectionUrl: "ws://testing:5000/api/cable",
+  connectionUrl: "ws://testing:5000/cable",
   connectImmediately: true
 });

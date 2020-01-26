@@ -3,7 +3,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
-  mount ActionCable.server => '/api/cable'
+  mount ActionCable.server => '/cable'
 
   defaults format: :json do
     mount_devise_token_auth_for(
