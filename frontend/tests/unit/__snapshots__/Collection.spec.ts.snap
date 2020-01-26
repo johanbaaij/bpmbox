@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Collection.vue should match snapshot 1`] = `
+<div class="container container--fluid">
+  <div class="row">
+    <div class="col">
+      <div class="v-tabs theme--light">
+        <div role="tablist" class="v-item-group theme--light v-slide-group v-tabs-bar v-tabs-bar--is-mobile primary--text">
+          <div class="v-slide-group__prev v-slide-group__prev--disabled">
+            <!---->
+          </div>
+          <div class="v-slide-group__wrapper">
+            <div class="v-slide-group__content v-tabs-bar__content">
+              <div class="v-tabs-slider-wrapper" style="transition: none;">
+                <div class="v-tabs-slider"></div>
+              </div><a href="/tracks" class="v-tab" tabindex="0" aria-selected="true" role="tab">Tracks</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col">
+      <div>
+        <div class="v-card v-sheet theme--light">
+          <div class="v-card__title">
+            BPMs for a collection
+          </div>
+          <div class="v-card__text pb-0">
+            <p>Enter your Discogs username.</p>
+            <div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder">
+              <div class="v-input__control">
+                <div class="v-input__slot">
+                  <div class="v-input__prepend-inner">
+                    <div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div>
+                  </div>
+                  <div class="v-text-field__slot"><input id="input-17" placeholder="johanbaaij" type="text"></div>
+                </div>
+                <div class="v-text-field__details">
+                  <div class="v-messages theme--light">
+                    <div class="v-messages__wrapper"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <div class="v-card__actions">
+            <div class="spacer"></div> <button type="button" disabled="disabled" class="v-btn v-btn--contained v-btn--disabled theme--light v-size--default"><span class="v-btn__content">Show my tracks</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

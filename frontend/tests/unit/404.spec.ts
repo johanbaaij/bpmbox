@@ -3,17 +3,17 @@ import "./setup";
 // Dependencies
 import Vuetify from "vuetify";
 import i18n from "@/plugins/i18n";
-import store from "@/store";
+import router from "@/router";
 
 // Components
-import Home from "../../src/views/Home.vue";
+import FourOhFour from "../../src/views/404.vue";
 
 // Utilities
 import { mount, createLocalVue } from "@vue/test-utils";
 
 const localVue = createLocalVue();
 
-describe("Home.vue", () => {
+describe("FourOhFour.vue", () => {
   let vuetify: any;
 
   beforeEach(() => {
@@ -21,11 +21,11 @@ describe("Home.vue", () => {
   });
 
   it("should match snapshot", () => {
-    const wrapper = mount(Home, {
+    const wrapper = mount(FourOhFour, {
       localVue,
+      router,
       vuetify,
-      i18n,
-      store
+      i18n
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

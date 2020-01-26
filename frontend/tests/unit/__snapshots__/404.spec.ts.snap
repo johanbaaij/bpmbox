@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FourOhFour.vue should match snapshot 1`] = `
+<div class="container container--fluid">
+  <div class="row">
+    <div class="col">
+      <p>404</p>
+      <p>
+        Time to go <a href="/" class="router-link-exact-active router-link-active">home</a>.
+      </p>
+    </div>
+  </div>
+</div>
+`;

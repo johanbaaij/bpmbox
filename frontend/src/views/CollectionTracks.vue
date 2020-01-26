@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-if="loaded"
     fixed-header
     :items="tracks"
     :headers="headers"

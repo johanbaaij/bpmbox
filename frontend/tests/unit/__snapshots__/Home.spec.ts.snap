@@ -1,35 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home.vue should match snapshot 1`] = `
-<div class="container container--fluid">
-  <div class="row">
-    <div class="col">
-      <h1>bpmbox</h1>
-      <h2>Find every BPM in your Discogs collection</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div>
-        <p>Enter your Discogs username to get started.</p>
-        <div class="v-input theme--light v-text-field v-text-field--prefix v-text-field--single-line v-text-field--solo v-text-field--enclosed">
-          <div class="v-input__control">
-            <div class="v-input__slot">
-              <div class="v-input__prepend-inner">
-                <div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div>
+<div class="row">
+  <div class="col-md-6 col">
+    <div>
+      <div class="v-card v-sheet theme--light">
+        <div class="v-card__title">
+          BPMs for a collection
+        </div>
+        <div class="v-card__text pb-0">
+          <p>Enter your Discogs username.</p>
+          <div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder">
+            <div class="v-input__control">
+              <div class="v-input__slot">
+                <div class="v-input__prepend-inner">
+                  <div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div>
+                </div>
+                <div class="v-text-field__slot"><input id="input-9" placeholder="johanbaaij" type="text"></div>
               </div>
-              <div class="v-text-field__slot">
-                <div class="v-text-field__prefix">https://www.discogs.com/user/</div><input id="input-6" type="text">
-              </div>
-            </div>
-            <div class="v-text-field__details">
-              <div class="v-messages theme--light">
-                <div class="v-messages__wrapper"></div>
+              <div class="v-text-field__details">
+                <div class="v-messages theme--light">
+                  <div class="v-messages__wrapper"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <!---->
+        <div class="v-card__actions">
+          <div class="spacer"></div> <button type="button" disabled="disabled" class="v-btn v-btn--contained v-btn--disabled theme--light v-size--default"><span class="v-btn__content">Show my tracks</span></button>
+        </div>
       </div>
     </div>
   </div>
