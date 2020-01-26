@@ -23,7 +23,14 @@ const routes = [
     name: "collection",
     component: Collection,
     props: true,
-    children: [{ path: "", component: CollectionTracks }]
+    children: [
+      {
+        name: "tracks",
+        props: true,
+        path: "tracks",
+        component: CollectionTracks
+      }
+    ]
   },
   {
     path: "/404",
@@ -53,7 +60,8 @@ const routes = [
     name: "discogsCallback",
     component: DiscogsCallback,
     meta: { auth: true }
-  }
+  },
+  { path: "*", component: FourOhFour }
 ];
 
 const router = new VueRouter({

@@ -3,6 +3,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
+  mount ActionCable.server => '/api/cable'
 
   defaults format: :json do
     mount_devise_token_auth_for(
@@ -16,12 +17,12 @@ Rails.application.routes.draw do
     get 'auth/user', controller: 'auth', action: 'user'
     get 'auth/refresh', controller: 'auth', action: 'refresh'
 
-    resources :collections, param: :username, only: [] do
+    resources :collections, param: :username, only: [:show] do
       member do
-        get :discogs_lookup
         post :import
       end
       resources :tracks, only: [:index]
+      resources :releases, only: [:index, :show]
     end
 
     namespace :discogs do

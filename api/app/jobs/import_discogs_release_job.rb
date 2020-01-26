@@ -10,12 +10,12 @@ class ImportDiscogsReleaseJob
     threshold: { limit: 1, period: 3.seconds }
   )
 
-  def perform(release_id)
+  def perform(release_id, username)
     @release_id = release_id
     find_release
     fetch_discogs_release
     add_extra_data_to_release
-    ImportSpotifyAudioFeaturesJob.perform_async(@release_id)
+    ImportSpotifyAudioFeaturesJob.perform_async(@release_id, username)
   end
 
   def find_release

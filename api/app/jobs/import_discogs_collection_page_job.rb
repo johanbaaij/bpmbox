@@ -9,6 +9,7 @@ class ImportDiscogsCollectionPageJob
   )
 
   def perform(url, username)
+
     @username = username
     @collection = Collection.find_or_initialize_by(username: username)
 

@@ -10,7 +10,7 @@ class ImportSpotifyAudioFeaturesJob
     threshold: { limit: 100, period: 1.minute }
   )
 
-  def perform(release_id)
+  def perform(release_id, username)
     release = Release.find_by(discogs_release_id: release_id)
 
     track_audio_features = {}
@@ -39,5 +39,9 @@ class ImportSpotifyAudioFeaturesJob
     end
 
     Track.update(track_audio_features.keys, track_audio_features.values)
+    CollectionsChannel.broadcast_to(
+      username,
+      "collections/#{username}/releases/#{release_id}?include=tracks"
+    )
   end
 end

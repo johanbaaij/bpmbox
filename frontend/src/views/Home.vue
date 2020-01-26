@@ -1,23 +1,15 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col>
-        <h1>{{ $t("app.title") }}</h1>
-        <h2>{{ $t("app.subtitle") }}</h2>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <search-discogs-username />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row>
+    <v-col md="6">
+      <find-collection-widget />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
-import SearchDiscogsUsername from "@/components/SearchDiscogsUsername.vue";
+import FindCollectionWidget from "@/components/FindCollectionWidget.vue";
 
 @Component({
   name: "home",
@@ -27,7 +19,7 @@ import SearchDiscogsUsername from "@/components/SearchDiscogsUsername.vue";
     };
   },
   components: {
-    SearchDiscogsUsername
+    FindCollectionWidget
   }
 })
 export default class Home extends Vue {}

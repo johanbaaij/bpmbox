@@ -22,6 +22,7 @@ module Discogs
         @release.imported_at = DateTime.now
 
         @release
+
       end
 
       def title

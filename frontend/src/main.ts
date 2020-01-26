@@ -8,7 +8,14 @@ import vuetify from "@/plugins/vuetify";
 import i18n from "@/plugins/i18n";
 import "@/plugins/vee-validate";
 import "@/plugins/vue-auth";
+import ActionCableVue from "actioncable-vue";
 
+Vue.use(ActionCableVue, {
+  debug: true,
+  debugLevel: "error",
+  connectionUrl: process.env["VUE_APP_API_URL"],
+  connectImmediately: true
+});
 Vue.use(VueMeta);
 
 Vue.config.productionTip = false;

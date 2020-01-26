@@ -1,11 +1,18 @@
 <template>
   <v-container fluid>
+    <v-row>
+      <v-col>
+        <v-tabs>
+          <v-tab to="tracks">Tracks</v-tab>
+        </v-tabs>
+      </v-col>
+    </v-row>
     <router-view />
   </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
 
 @Component({
@@ -16,7 +23,17 @@ import MetaInfo from "vue-meta";
     };
   }
 })
-export default class Collection extends Vue {}
+export default class Collection extends Vue {
+  @Prop() readonly username!: string;
+  $cable: any;
+
+  mounted() {
+    this.$cable.subscribe({
+      channel: "CollectionsChannel",
+      username: this.username
+    });
+  }
+}
 </script>
 
 <style lang="sass"></style>

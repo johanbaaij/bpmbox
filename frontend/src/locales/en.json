@@ -1,15 +1,13 @@
 {
   "app": {
     "title": "bpmbox",
-    "subtitle": "Find every BPM in your Discogs collection"
+    "subtitle": "Find BPMs for Discogs releases"
   },
   "Home": {
     "title": ""
   },
-  "Releases": {
-    "title": "Releases",
-    "new": "New",
-    "importFromDiscogs": "Import from Discogs"
+  "Collection": {
+    "title": "Collection"
   },
   "Login": {
     "title": "Login",
@@ -35,11 +33,11 @@
     "subtitle": "Give bpmbox access to your Discogs collection.",
     "authorize": "Authorize"
   },
-  "SearchDiscogsUsername": {
-    "instructions": "Enter your Discogs username to get started.",
+  "FindCollectionWidget": {
+    "instructions": "Enter your Discogs username.",
     "card": {
       "text": "{num_collection} items.",
-      "button": "Import"
+      "button": "Show my tracks"
     }
   },
   "user": {
