@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:3000', '127.0.0.1:3000', 'bpmbox.baaij.com.au'
+    origins 'localhost:8080', '127.0.0.1:8080', 'bpmbox.baaij.com.au'
     resource '*',
       headers: :any,
       expose: ['access-token', 'client', 'uid', 'expiry', 'token-type', 'Content-Type'],
