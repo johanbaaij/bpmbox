@@ -13,7 +13,7 @@ import ActionCableVue from "actioncable-vue";
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: "error",
-  connectionUrl: process.env["VUE_APP_API_URL"],
+  connectionUrl: process.env["VUE_APP_ACTION_CABLE_URL"],
   connectImmediately: true
 });
 Vue.use(VueMeta);
