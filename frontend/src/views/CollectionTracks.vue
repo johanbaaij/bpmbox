@@ -6,6 +6,7 @@
   >
     <v-data-table
       fixed-header
+      :loading="receiving"
       :items="tracks"
       :headers="headers"
       :options.sync="options"
@@ -18,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import { mapState } from "vuex";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
 
@@ -27,11 +29,15 @@ import MetaInfo from "vue-meta";
     return {
       title: this.$i18n.t("Collection.title") as string
     };
+  },
+  computed: {
+    ...mapState(["receiving"])
   }
 })
 export default class CollectionTracks extends Vue {
   @Prop() readonly username!: string;
   loading = true;
+  receiving!: boolean;
   options = {
     sortBy: ["release"]
   };
