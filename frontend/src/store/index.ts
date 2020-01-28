@@ -13,6 +13,19 @@ const api = axios.create({
 });
 
 export default new Vuex.Store({
+  state: {
+    receiving: false
+  },
+  mutations: {
+    receiving(state, payload) {
+      state.receiving = payload;
+    }
+  },
+  actions: {
+    receiving(context, value) {
+      context.commit("receiving", value);
+    }
+  },
   modules: {
     jv: jsonapiModule(api)
   }

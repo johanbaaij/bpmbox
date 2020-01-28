@@ -39,9 +39,11 @@ class ImportSpotifyAudioFeaturesJob
     end
 
     Track.update(track_audio_features.keys, track_audio_features.values)
-    CollectionsChannel.broadcast_to(
-      username,
-      "collections/#{username}/releases/#{release_id}?include=tracks"
-    )
+
+    CollectionsChannel.broadcast_to(username, {
+      username: username,
+      release_id: release_id,
+      jobs_left: Sidekiq::Queue.new("discogs").select{ |job| job.args[1] == username }.size
+    })
   end
 end

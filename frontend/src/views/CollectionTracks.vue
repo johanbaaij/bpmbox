@@ -1,18 +1,25 @@
 <template>
-  <v-data-table
-    v-if="loaded"
-    fixed-header
-    :items="tracks"
-    :headers="headers"
-    :options.sync="options"
+  <v-skeleton-loader
+    :loading="loading"
+    transition="fade-transition"
+    type="table"
   >
-    <template v-slot:item.release="{ item }">
-      {{ item.release.title }}
-    </template>
-  </v-data-table>
+    <v-data-table
+      fixed-header
+      :loading="receiving"
+      :items="tracks"
+      :headers="headers"
+      :options.sync="options"
+    >
+      <template v-slot:item.release="{ item }">
+        {{ item.release.title }}
+      </template>
+    </v-data-table>
+  </v-skeleton-loader>
 </template>
 
 <script lang="ts">
+import { mapState } from "vuex";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
 
@@ -22,11 +29,15 @@ import MetaInfo from "vue-meta";
     return {
       title: this.$i18n.t("Collection.title") as string
     };
+  },
+  computed: {
+    ...mapState(["receiving"])
   }
 })
 export default class CollectionTracks extends Vue {
   @Prop() readonly username!: string;
-  loaded = false;
+  loading = true;
+  receiving!: boolean;
   options = {
     sortBy: ["release"]
   };
@@ -74,7 +85,7 @@ export default class CollectionTracks extends Vue {
       data,
       { url: `/collections/${this.username}/tracks?include=release` }
     ]);
-    this.loaded = true;
+    this.loading = false;
   }
 
   get tracks() {
