@@ -4,3 +4,6 @@ default: &default
 
 production:
   url: <%= ENV["REDIS_URL"] %>
+
+test:
+  db: 2
