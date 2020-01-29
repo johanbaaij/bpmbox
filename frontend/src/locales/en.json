@@ -37,7 +37,7 @@
     "instructions": "Enter your Discogs username.",
     "card": {
       "text": "{num_collection} items.",
-      "button": "Show my tracks"
+      "button": "Go!"
     }
   },
   "user": {
