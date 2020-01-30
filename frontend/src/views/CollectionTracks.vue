@@ -1,15 +1,22 @@
 <template>
   <v-skeleton-loader
-    :loading="loading"
+    :loading="initialLoading"
     transition="fade-transition"
     type="table"
   >
     <v-data-table
       fixed-header
-      :loading="receiving"
+      :loading="receiving || apiLoading"
       :items="tracks"
       :headers="headers"
       :options.sync="options"
+      :server-items-length="totalTracks"
+      :items-per-page="30"
+      dense
+      :footer-props="{
+        disableItemsPerPage: true,
+        itemsPerPageOptions: [30]
+      }"
     >
       <template v-slot:item.release="{ item }">
         {{ item.release.title }}
@@ -20,8 +27,9 @@
 
 <script lang="ts">
 import { mapState } from "vuex";
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
+import TrackQueryParams from "@/TrackQueryParams";
 
 @Component({
   name: "collection-tracks",
@@ -36,11 +44,24 @@ import MetaInfo from "vue-meta";
 })
 export default class CollectionTracks extends Vue {
   @Prop() readonly username!: string;
-  loading = true;
+
+  initialLoading = true;
+  apiLoading = false;
   receiving!: boolean;
+  totalTracks = 0;
+  tracks = [];
+
   options = {
-    sortBy: ["release"]
+    page: 1,
+    itemsPerPage: 30,
+    sortBy: ["release"],
+    sortDesc: [false],
+    groupBy: [],
+    groupDesc: [],
+    mustSort: true,
+    multiSort: false
   };
+
   headers = [
     {
       text: "Position",
@@ -79,23 +100,48 @@ export default class CollectionTracks extends Vue {
     }
   ];
 
-  async mounted() {
-    const data = { _jv: { type: "track" } };
-    await this.$store.dispatch("jv/get", [
-      data,
-      { url: `/collections/${this.username}/tracks?include=release` }
-    ]);
-    this.loading = false;
+  @Watch("options", { deep: true })
+  optionsChanged(newOptions: any, oldOptions: any) {
+    this.getApiData(newOptions);
   }
 
-  get tracks() {
-    return Object.values(
-      this.$store.getters["jv/get"](
-        "track",
-        `$[?(@.collection=="${this.username}")]`
-      )
-    );
+  async getApiData(options: any) {
+    this.apiLoading = true;
+    const urlParams = new TrackQueryParams(options).urlParams();
+    const jsonapiData = { _jv: { type: "track" } };
+
+    const response = await this.$store.dispatch("jv/get", [
+      jsonapiData,
+      {
+        url: `/collections/${this.username}/tracks`,
+        params: { include: "release", ...urlParams }
+      }
+    ]);
+
+    const { _jv, ...data } = response;
+
+    this.tracks = Object.values(data);
+
+    this.totalTracks = response._jv.json.meta.total;
+    // const data = response;
+    // this.trracks = data.map(a => data[a.id]);
+
+    this.apiLoading = false;
+    this.initialLoading = false;
   }
+
+  async mounted() {
+    this.getApiData(this.options);
+  }
+
+  // get tracks() {
+  //   return Object.values(
+  //     this.$store.getters["jv/get"](
+  //       "track",
+  //       `$[?(@.collection=="${this.username}")]`
+  //     )
+  //   );
+  // }
 }
 </script>
 
