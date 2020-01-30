@@ -27,6 +27,9 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    jv: jsonapiModule(api)
+    jv: jsonapiModule(api, {
+      preserveJson: true,
+      clearOnUpdate: true
+    })
   }
 });

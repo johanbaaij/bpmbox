@@ -47,7 +47,7 @@ exports[`Collection.vue should match snapshot 1`] = `
           </div>
           <!---->
           <div class="v-card__actions">
-            <div class="spacer"></div> <button type="button" disabled="disabled" class="v-btn v-btn--contained v-btn--disabled theme--light v-size--default"><span class="v-btn__content">Show my tracks</span></button>
+            <div class="spacer"></div> <button type="button" disabled="disabled" class="v-btn v-btn--contained v-btn--disabled theme--light v-size--default"><span class="v-btn__content">Go!</span></button>
           </div>
         </div>
       </div>
