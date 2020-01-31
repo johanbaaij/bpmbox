@@ -124,11 +124,7 @@ export default class CollectionTracks extends Vue {
     const { _jv, ...data } = response;
 
     this.tracks = Object.values(data);
-
-    this.totalTracks = response._jv.json.meta.total;
-    // const data = response;
-    // this.trracks = data.map(a => data[a.id]);
-
+    this.totalTracks = _jv.json.meta.total;
     this.apiLoading = false;
     this.initialLoading = false;
   }
@@ -136,15 +132,6 @@ export default class CollectionTracks extends Vue {
   async mounted() {
     this.getApiData(this.options);
   }
-
-  // get tracks() {
-  //   return Object.values(
-  //     this.$store.getters["jv/get"](
-  //       "track",
-  //       `$[?(@.collection=="${this.username}")]`
-  //     )
-  //   );
-  // }
 }
 </script>
 
