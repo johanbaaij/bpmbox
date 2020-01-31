@@ -7,6 +7,7 @@ class TracksController < ApplicationController
   include JSONAPI::Filtering
 
   ALLOWED_RANSACK_FIELDS = %w[
+    bpm
     bpm_nulls_last
     key_nulls_last
     r_title_positions
@@ -19,7 +20,7 @@ class TracksController < ApplicationController
              .find_by!(username: params[:collection_username]).tracks
 
     jsonapi_filter(tracks, ALLOWED_RANSACK_FIELDS) do |filtered|
-      filtered.sorts = 'release_with_position asc' if filtered.sorts.empty?
+      filtered.sorts = 'r_title_positions asc' if filtered.sorts.empty?
 
       jsonapi_paginate(filtered.result) do |paginated|
         render jsonapi: paginated
@@ -39,6 +40,6 @@ class TracksController < ApplicationController
     pagination = jsonapi_pagination_meta(resources)
     return unless pagination.present?
 
-    { pagination: pagination, total: resources.unscoped.count }
+    { pagination: pagination, total: resources.unscope(:limit, :offset).count }
   end
 end

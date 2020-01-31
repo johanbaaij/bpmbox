@@ -40,6 +40,18 @@
       "button": "Go!"
     }
   },
+  "TrackFilter": {
+    "hideNullBpms": "Hide tracks without BPM"
+  },
+  "track": {
+    "position": "Position",
+    "release_artist": "Release artist",
+    "release_title": "Release title",
+    "artist": "Artist",
+    "title": "Title",
+    "bpm": "BPM",
+    "key": "Key"
+  },
   "user": {
     "email": "Email",
     "password": "Password",

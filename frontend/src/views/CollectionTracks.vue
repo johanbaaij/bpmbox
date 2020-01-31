@@ -6,18 +6,21 @@
   >
     <v-data-table
       fixed-header
+      dense
       :loading="receiving || apiLoading"
       :items="tracks"
       :headers="headers"
       :options.sync="options"
-      :server-items-length="totalTracks"
+      :server-items-length="serverItemsLength"
       :items-per-page="30"
-      dense
       :footer-props="{
         disableItemsPerPage: true,
         itemsPerPageOptions: [30]
       }"
     >
+      <template v-slot:top>
+        <track-filter />
+      </template>
       <template v-slot:item.release_title="{ item }">
         {{ item.release.title }}
       </template>
@@ -32,7 +35,8 @@
 import { mapState } from "vuex";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
-import TrackQueryParams from "@/TrackQueryParams";
+import TrackFilter from "@/components/TrackFilter.vue";
+import i18n from "@/plugins/i18n";
 
 @Component({
   name: "collection-tracks",
@@ -42,109 +46,74 @@ import TrackQueryParams from "@/TrackQueryParams";
     };
   },
   computed: {
-    ...mapState(["receiving"])
+    ...mapState(["receiving"]),
+    ...mapState("tracks", ["serverItemsLength", "apiLoading"])
+  },
+  components: {
+    TrackFilter
   }
 })
 export default class CollectionTracks extends Vue {
   @Prop() readonly username!: string;
-
   initialLoading = true;
-  apiLoading = false;
   receiving!: boolean;
-  totalTracks = 0;
-  tracks = [];
 
-  options = {
-    page: 1,
-    itemsPerPage: 30,
-    sortBy: ["release_title"],
-    sortDesc: [false],
-    groupBy: [],
-    groupDesc: [],
-    mustSort: true,
-    multiSort: false
-  };
+  get options() {
+    return this.$store.state.tracks.options;
+  }
+
+  set options(value) {
+    this.$store.dispatch("tracks/options", value);
+  }
+
+  get tracks() {
+    return Object.values(
+      this.$store.getters["jv/get"]({ _jv: { type: "track" } })
+    );
+  }
 
   headers = [
     {
-      text: "Position",
+      text: i18n.t("track.position"),
       value: "position",
       sortable: false
     },
     {
-      text: "Release artist",
+      text: i18n.t("track.release_artist"),
       value: "release_artist",
       sortable: true
     },
     {
-      text: "Release title",
+      text: i18n.t("track.release_title"),
       value: "release_title",
       sortable: true
     },
     {
-      text: "Track artist",
+      text: i18n.t("track.artist"),
       value: "artist",
       sortable: false
     },
     {
-      text: "Title",
+      text: i18n.t("track.title"),
       value: "title",
       sortable: true
     },
     {
-      text: "BPM",
+      text: i18n.t("track.bpm"),
       value: "bpm",
       sortable: true
     },
     {
-      text: "Key",
+      text: i18n.t("track.key"),
       value: "key",
       sortable: true
     }
   ];
 
-  @Watch("options", { deep: true })
-  optionsChanged(newOptions: any, oldOptions: any) {
-    this.getApiData(newOptions);
-  }
-
-  async getApiData(options: any) {
-    this.apiLoading = true;
-    const urlParams = new TrackQueryParams(options).urlParams();
-    const jsonapiData = { _jv: { type: "track" } };
-
-    const response = await this.$store.dispatch("jv/get", [
-      jsonapiData,
-      {
-        url: `/collections/${this.username}/tracks`,
-        params: { include: "release", ...urlParams }
-      }
-    ]);
-
-    const { _jv, ...data } = response;
-
-    this.tracks = Object.values(data);
-
-    this.totalTracks = response._jv.json.meta.total;
-    // const data = response;
-    // this.trracks = data.map(a => data[a.id]);
-
-    this.apiLoading = false;
+  async mounted() {
+    await this.$store.dispatch("tracks/apiData");
     this.initialLoading = false;
   }
-
-  async mounted() {
-    this.getApiData(this.options);
-  }
-
-  // get tracks() {
-  //   return Object.values(
-  //     this.$store.getters["jv/get"](
-  //       "track",
-  //       `$[?(@.collection=="${this.username}")]`
-  //     )
-  //   );
-  // }
 }
 </script>
 
