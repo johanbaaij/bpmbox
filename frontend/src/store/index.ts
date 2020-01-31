@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import { jsonapiModule } from "jsonapi-vuex";
+import tracksModule from "./tracks";
 
 Vue.use(Vuex);
 
@@ -22,11 +23,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    receiving(context, value) {
-      context.commit("receiving", value);
+    receiving({ commit }, value) {
+      commit("receiving", value);
     }
   },
   modules: {
+    tracks: tracksModule,
     jv: jsonapiModule(api, {
       preserveJson: true,
       clearOnUpdate: true

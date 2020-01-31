@@ -6,13 +6,13 @@
   >
     <v-data-table
       fixed-header
+      dense
       :loading="receiving || apiLoading"
       :items="tracks"
       :headers="headers"
       :options.sync="options"
-      :server-items-length="totalTracks"
+      :server-items-length="serverItemsLength"
       :items-per-page="30"
-      dense
       :footer-props="{
         disableItemsPerPage: true,
         itemsPerPageOptions: [30]
@@ -32,7 +32,6 @@
 import { mapState } from "vuex";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
-import TrackQueryParams from "@/TrackQueryParams";
 
 @Component({
   name: "collection-tracks",
@@ -42,28 +41,28 @@ import TrackQueryParams from "@/TrackQueryParams";
     };
   },
   computed: {
-    ...mapState(["receiving"])
+    ...mapState(["receiving"]),
+    ...mapState("tracks", ["serverItemsLength", "apiLoading"])
   }
 })
 export default class CollectionTracks extends Vue {
   @Prop() readonly username!: string;
-
   initialLoading = true;
-  apiLoading = false;
   receiving!: boolean;
-  totalTracks = 0;
-  tracks = [];
 
-  options = {
-    page: 1,
-    itemsPerPage: 30,
-    sortBy: ["release_title"],
-    sortDesc: [false],
-    groupBy: [],
-    groupDesc: [],
-    mustSort: true,
-    multiSort: false
-  };
+  get options() {
+    return this.$store.state.tracks.options;
+  }
+
+  set options(value) {
+    this.$store.dispatch("tracks/options", value);
+  }
+
+  get tracks() {
+    return Object.values(
+      this.$store.getters["jv/get"]({ _jv: { type: "track" } })
+    );
+  }
 
   headers = [
     {
@@ -103,34 +102,9 @@ export default class CollectionTracks extends Vue {
     }
   ];
 
-  @Watch("options", { deep: true })
-  optionsChanged(newOptions: any, oldOptions: any) {
-    this.getApiData(newOptions);
-  }
-
-  async getApiData(options: any) {
-    this.apiLoading = true;
-    const urlParams = new TrackQueryParams(options).urlParams();
-    const jsonapiData = { _jv: { type: "track" } };
-
-    const response = await this.$store.dispatch("jv/get", [
-      jsonapiData,
-      {
-        url: `/collections/${this.username}/tracks`,
-        params: { include: "release", ...urlParams }
-      }
-    ]);
-
-    const { _jv, ...data } = response;
-
-    this.tracks = Object.values(data);
-    this.totalTracks = _jv.json.meta.total;
-    this.apiLoading = false;
-    this.initialLoading = false;
-  }
-
   async mounted() {
-    this.getApiData(this.options);
+    await this.$store.dispatch("tracks/apiData");
+    this.initialLoading = false;
   }
 }
 </script>
