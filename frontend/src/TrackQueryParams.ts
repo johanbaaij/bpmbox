@@ -1,8 +1,8 @@
 const attributeSortingDicitonary = {
   bpm: "bpm_nulls_last",
   key: "key_nulls_last",
-  release: "release_with_position",
-  artist: "artist",
+  release_title: "r_title_positions",
+  release_artist: "r_artist_positions",
   title: "title"
 };
 

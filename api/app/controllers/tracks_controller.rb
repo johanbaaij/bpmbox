@@ -7,11 +7,11 @@ class TracksController < ApplicationController
   include JSONAPI::Filtering
 
   ALLOWED_RANSACK_FIELDS = %w[
-    artist
-    title
-    release_with_position
     bpm_nulls_last
     key_nulls_last
+    r_title_positions
+    r_artist_positions
+    title
   ].freeze
 
   def index
