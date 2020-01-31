@@ -18,8 +18,11 @@
         itemsPerPageOptions: [30]
       }"
     >
-      <template v-slot:item.release="{ item }">
+      <template v-slot:item.release_title="{ item }">
         {{ item.release.title }}
+      </template>
+      <template v-slot:item.release_artist="{ item }">
+        {{ item.release.artist }}
       </template>
     </v-data-table>
   </v-skeleton-loader>
@@ -54,7 +57,7 @@ export default class CollectionTracks extends Vue {
   options = {
     page: 1,
     itemsPerPage: 30,
-    sortBy: ["release"],
+    sortBy: ["release_title"],
     sortDesc: [false],
     groupBy: [],
     groupDesc: [],
@@ -69,19 +72,19 @@ export default class CollectionTracks extends Vue {
       sortable: false
     },
     {
-      text: "Release",
-      value: "release",
-      sortable: true,
-      sort: (a: any, b: any) => {
-        if (a.title == b.title) return 0;
-        if (a.title > b.title) return 1;
-        return -1;
-      }
+      text: "Release artist",
+      value: "release_artist",
+      sortable: true
     },
     {
-      text: "Artist",
-      value: "artist",
+      text: "Release title",
+      value: "release_title",
       sortable: true
+    },
+    {
+      text: "Track artist",
+      value: "artist",
+      sortable: false
     },
     {
       text: "Title",
