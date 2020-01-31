@@ -7,6 +7,7 @@ class TracksController < ApplicationController
   include JSONAPI::Filtering
 
   ALLOWED_RANSACK_FIELDS = %w[
+    bpm
     bpm_nulls_last
     key_nulls_last
     r_title_positions
@@ -39,6 +40,6 @@ class TracksController < ApplicationController
     pagination = jsonapi_pagination_meta(resources)
     return unless pagination.present?
 
-    { pagination: pagination, total: resources.unscoped.count }
+    { pagination: pagination, total: resources.unscope(:limit, :offset).count }
   end
 end

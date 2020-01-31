@@ -6,6 +6,7 @@ const tracksModule: Module<any, any> = {
   state: {
     serverItemsLength: 0,
     apiLoading: false,
+    hideNullBpms: false,
     options: {
       page: 1,
       itemsPerPage: 30,
@@ -22,9 +23,19 @@ const tracksModule: Module<any, any> = {
       commit("options", payload);
       dispatch("apiData");
     },
+    hideNullBpms({ commit, dispatch }, payload) {
+      commit("hideNullBpms", payload);
+      dispatch("apiData");
+    },
     async apiData({ state, dispatch, commit }) {
       commit("apiLoading", true);
-      const urlParams = new TrackQueryParams(state.options).urlParams();
+      const filters = {
+        hideNullBpms: state.hideNullBpms
+      };
+      const urlParams = new TrackQueryParams(
+        state.options,
+        filters
+      ).urlParams();
       const jsonapiData = {
         _jv: { type: "track" }
       };
@@ -57,6 +68,9 @@ const tracksModule: Module<any, any> = {
     },
     apiLoading(state, payload) {
       state.apiLoading = payload;
+    },
+    hideNullBpms(state, payload) {
+      state.hideNullBpms = payload;
     }
   }
 };

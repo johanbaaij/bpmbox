@@ -12,17 +12,24 @@ interface Options {
   sortDesc: boolean[];
 }
 
+interface Filters {
+  hideNullBpms: boolean;
+}
+
 export default class TrackQueryParams {
   options: Options;
+  filters: Filters;
 
-  constructor(options: Options) {
+  constructor(options: Options, filters: Filters) {
     this.options = options;
+    this.filters = filters;
   }
 
   urlParams() {
     return {
       ...this.pageParam(),
-      ...this.sortParam()
+      ...this.sortParam(),
+      ...this.filterParams()
     };
   }
 
@@ -48,6 +55,14 @@ export default class TrackQueryParams {
     return {
       sort: sortByString
     };
+  }
+
+  filterParams() {
+    if (this.filters.hideNullBpms) {
+      return {
+        "filter[bpm_not_null]": 1
+      };
+    }
   }
 
   sortDirectionModifier(index: number) {

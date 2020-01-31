@@ -18,6 +18,9 @@
         itemsPerPageOptions: [30]
       }"
     >
+      <template v-slot:top>
+        <track-filter />
+      </template>
       <template v-slot:item.release_title="{ item }">
         {{ item.release.title }}
       </template>
@@ -32,6 +35,8 @@
 import { mapState } from "vuex";
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
+import TrackFilter from "@/components/TrackFilter.vue";
+import i18n from "@/plugins/i18n";
 
 @Component({
   name: "collection-tracks",
@@ -43,6 +48,9 @@ import MetaInfo from "vue-meta";
   computed: {
     ...mapState(["receiving"]),
     ...mapState("tracks", ["serverItemsLength", "apiLoading"])
+  },
+  components: {
+    TrackFilter
   }
 })
 export default class CollectionTracks extends Vue {
@@ -66,37 +74,37 @@ export default class CollectionTracks extends Vue {
 
   headers = [
     {
-      text: "Position",
+      text: i18n.t("track.position"),
       value: "position",
       sortable: false
     },
     {
-      text: "Release artist",
+      text: i18n.t("track.release_artist"),
       value: "release_artist",
       sortable: true
     },
     {
-      text: "Release title",
+      text: i18n.t("track.release_title"),
       value: "release_title",
       sortable: true
     },
     {
-      text: "Track artist",
+      text: i18n.t("track.artist"),
       value: "artist",
       sortable: false
     },
     {
-      text: "Title",
+      text: i18n.t("track.title"),
       value: "title",
       sortable: true
     },
     {
-      text: "BPM",
+      text: i18n.t("track.bpm"),
       value: "bpm",
       sortable: true
     },
     {
-      text: "Key",
+      text: i18n.t("track.key"),
       value: "key",
       sortable: true
     }
