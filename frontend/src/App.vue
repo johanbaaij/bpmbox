@@ -1,18 +1,9 @@
 <template>
   <v-app v-if="$auth.ready()">
+    <the-app-bar />
     <v-content>
-      <v-container fluid>
-        <v-row>
-          <v-col>
-            <h1>
-              <router-link to="/">{{ $t("app.title") }}</router-link>
-            </h1>
-            <h2>{{ $t("app.subtitle") }}</h2>
-          </v-col>
-        </v-row>
         <Notifications />
         <router-view />
-      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -22,13 +13,13 @@ import { Component, Vue } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
 import CollectionsChannel from "@/channels/CollectionsChannel";
 import Notifications from "@/components/Notifications.vue";
-import AppBar from "@/components/AppBar.vue";
+import TheAppBar from "@/components/TheAppBar.vue";
 
 @Component({
   name: "app",
   components: {
     Notifications,
-    AppBar
+    TheAppBar
   },
   channels: {
     CollectionsChannel

@@ -1,15 +1,16 @@
 <template>
-  <v-app-bar app>
-    <v-toolbar-title class="mr-2"
-      ><router-link :to="homeRoute">{{
-        $t("app.title")
-      }}</router-link></v-toolbar-title
-    >
+  <v-app-bar color="secondary lighten-3" app elevation="0">
+    <v-toolbar-title class="mr-2">
+      <v-btn icon color="primary" :to="homeRoute">
+        <v-icon color="primary">mdi-metronome</v-icon>
+      </v-btn>
+    </v-toolbar-title>
+
+    <v-chip close @click:close="clearUsername" v-if="username">
+      {{ username }}
+    </v-chip>
     <v-spacer />
     <v-toolbar-items class="ml-2">
-      <v-btn v-if="!$auth.check()" to="register" text>{{
-        $t("AppBar.register")
-      }}</v-btn>
       <v-btn v-if="!$auth.check()" to="login" text>{{
         $t("AppBar.login")
       }}</v-btn>
@@ -35,6 +36,15 @@ export default class AppBar extends Vue {
     return {
       name: "home"
     };
+  }
+
+  get username() {
+    return this.$store.state.user.username;
+  }
+
+  clearUsername() {
+    this.$store.dispatch("user/username", null);
+    this.$router.replace({ name: "home" });
   }
 }
 </script>
