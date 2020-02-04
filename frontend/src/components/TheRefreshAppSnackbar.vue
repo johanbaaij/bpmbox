@@ -26,4 +26,5 @@ const TheRefreshAppSnackbar = createComponent({
     };
   }
 });
+export default TheRefreshAppSnackbar;
 </script>
