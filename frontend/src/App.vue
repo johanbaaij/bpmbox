@@ -4,18 +4,35 @@
     <v-content>
       <Notifications />
       <router-view />
+      <RefreshAppSnackbar />
+      <v-snackbar
+        v-model="state.snackWithButtons"
+        :timeout="state.timeout"
+        bottom
+      >
+        {{ state.snackWithBtnText }}
+        <v-spacer />
+        <v-btn text @click.native="refreshApp">
+          {{ state.snackBtnText }}
+        </v-btn>
+        <v-btn text @click="state.snackWithButtons = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-snackbar>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import MetaInfo from "vue-meta";
+import { createComponent } from "@vue/composition-api";
 import CollectionsChannel from "@/channels/CollectionsChannel";
 import Notifications from "@/components/Notifications.vue";
 import TheAppBar from "@/components/TheAppBar.vue";
+import i18n from "@/plugins/i18n";
+import store from "@/store";
 
-@Component({
+const App = createComponent({
   name: "app",
   components: {
     Notifications,
@@ -28,15 +45,15 @@ import TheAppBar from "@/components/TheAppBar.vue";
     return {
       titleTemplate: (titleChunk: string) => {
         return titleChunk
-          ? `${titleChunk} - ${this.$i18n.t("app.title")}`
-          : this.$i18n.t("app.title");
+          ? `${titleChunk} - ${i18n.t("app.title")}`
+          : i18n.t("app.title");
       }
     };
+  },
+  setup() {
+    store.commit("user/initialise");
   }
-})
-export default class App extends Vue {
-  beforeCreate() {
-    this.$store.commit("user/initialise");
-  }
-}
+});
+
+export default App;
 </script>

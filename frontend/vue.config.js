@@ -6,9 +6,11 @@ module.exports = {
   },
 
   pwa: {
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      skipWaiting: true
-    }
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js',
+    },
   },
 
   pluginOptions: {
