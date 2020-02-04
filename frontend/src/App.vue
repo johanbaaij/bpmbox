@@ -4,21 +4,7 @@
     <v-content>
       <Notifications />
       <router-view />
-      <RefreshAppSnackbar />
-      <v-snackbar
-        v-model="state.snackWithButtons"
-        :timeout="state.timeout"
-        bottom
-      >
-        {{ state.snackWithBtnText }}
-        <v-spacer />
-        <v-btn text @click.native="refreshApp">
-          {{ state.snackBtnText }}
-        </v-btn>
-        <v-btn text @click="state.snackWithButtons = false">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </v-snackbar>
+      <TheRefreshAppSnackbar />
     </v-content>
   </v-app>
 </template>
@@ -29,6 +15,7 @@ import { createComponent } from "@vue/composition-api";
 import CollectionsChannel from "@/channels/CollectionsChannel";
 import Notifications from "@/components/Notifications.vue";
 import TheAppBar from "@/components/TheAppBar.vue";
+import TheRefreshAppSnackbar from "@/components/TheRefreshAppSnackbar.vue";
 import i18n from "@/plugins/i18n";
 import store from "@/store";
 
@@ -36,7 +23,8 @@ const App = createComponent({
   name: "app",
   components: {
     Notifications,
-    TheAppBar
+    TheAppBar,
+    TheRefreshAppSnackbar
   },
   channels: {
     CollectionsChannel
