@@ -9,7 +9,9 @@ import i18n from "@/plugins/i18n";
 import "@/plugins/vee-validate";
 import "@/plugins/vue-auth";
 import ActionCableVue from "actioncable-vue";
+import VueCompositionApi from "@vue/composition-api";
 
+Vue.use(VueCompositionApi);
 Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: "error",
