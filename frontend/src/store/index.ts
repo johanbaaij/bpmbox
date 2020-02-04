@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import axios from "axios";
 import { jsonapiModule } from "jsonapi-vuex";
 import tracksModule from "./tracks";
+import userModule from "./user";
 
 Vue.use(Vuex);
 
@@ -13,7 +14,7 @@ const api = axios.create({
   }
 });
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     receiving: false
   },
@@ -29,9 +30,16 @@ export default new Vuex.Store({
   },
   modules: {
     tracks: tracksModule,
+    user: userModule,
     jv: jsonapiModule(api, {
       preserveJson: true,
       clearOnUpdate: true
     })
   }
 });
+
+store.subscribe((_mutation, state: any) => {
+  localStorage.setItem("userModule", JSON.stringify(state.user));
+});
+
+export default store;

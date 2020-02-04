@@ -1,37 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home.vue should match snapshot 1`] = `
-<div class="row">
-  <div class="col-md-6 col">
-    <div>
-      <div class="v-card v-sheet theme--light">
-        <div class="v-card__title">
-          BPMs for a collection
-        </div>
-        <div class="v-card__text pb-0">
-          <p>Enter your Discogs username.</p>
-          <div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder">
-            <div class="v-input__control">
-              <div class="v-input__slot">
-                <div class="v-input__prepend-inner">
-                  <div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div>
-                </div>
-                <div class="v-text-field__slot"><input id="input-9" placeholder="johanbaaij" type="text"></div>
-              </div>
-              <div class="v-text-field__details">
-                <div class="v-messages theme--light">
-                  <div class="v-messages__wrapper"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!---->
-        <div class="v-card__actions">
-          <div class="spacer"></div> <button type="button" disabled="disabled" class="v-btn v-btn--contained v-btn--disabled theme--light v-size--default"><span class="v-btn__content">Go!</span></button>
-        </div>
-      </div>
+<div class="container container--fluid">
+  <div class="row justify-center">
+    <div class="col col-auto">
+      <h1 class="text-center">
+        bpmbox
+      </h1>
+      <h2 class="text-center">
+        find BPMs for your Discogs collection
+      </h2>
     </div>
   </div>
+  <div class="row justify-center">
+    <div class="col-sm-8 col-md-6 col-lg-4 col"><span><div class="v-card v-sheet theme--light"><div class="v-card__text pb-0"><p>Enter your Discogs username to get started.</p> <span><div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-text-field--placeholder"><div class="v-input__control"><div class="v-input__slot"><div class="v-input__prepend-inner"><div class="v-input__icon v-input__icon--prepend-inner"><i aria-hidden="true" class="v-icon notranslate mdi mdi-account theme--light"></i></div></div><div class="v-text-field__slot"><input id="input-11" placeholder="johanbaaij" type="text"></div></div><div class="v-text-field__details"><div class="v-messages theme--light"><div class="v-messages__wrapper"></div></div></div></div></div></span></div>
+    <!---->
+    <div class="v-card__actions">
+      <div class="spacer"></div> <button type="button" class="v-btn v-btn--contained theme--light v-size--default primary"><span class="v-btn__content">Find BPMs</span></button>
+    </div>
+  </div></span>
+</div>
+</div>
 </div>
 `;

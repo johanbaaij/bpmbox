@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "bpmbox",
-    "subtitle": "Find BPMs for Discogs releases"
+    "subtitle": "find BPMs for your Discogs collection"
   },
   "Home": {
     "title": ""
@@ -34,10 +34,11 @@
     "authorize": "Authorize"
   },
   "FindCollectionWidget": {
-    "instructions": "Enter your Discogs username.",
+    "instructions": "Enter your Discogs username to get started.",
+    "noPublicCollection": "User or public collection not found.",
     "card": {
-      "text": "{num_collection} items.",
-      "button": "Go!"
+      "text": "{num_collection} items in collection",
+      "button": "Find BPMs"
     }
   },
   "TrackFilter": {

@@ -10,11 +10,7 @@ export default {
   }) {
     const { username, release_id, jobs_left } = params;
     store.dispatch("receiving", true);
-    const data = { _jv: { type: "release" } };
-    await store.dispatch("jv/get", [
-      data,
-      { url: `collections/${username}/releases/${release_id}?include=tracks` }
-    ]);
+    await store.dispatch("tracks/apiData");
     if (jobs_left === 0) {
       store.dispatch("receiving", false);
     }

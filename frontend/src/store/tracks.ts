@@ -27,7 +27,7 @@ const tracksModule: Module<any, any> = {
       commit("hideNullBpms", payload);
       dispatch("apiData");
     },
-    async apiData({ state, dispatch, commit }) {
+    async apiData({ state, rootState, dispatch, commit }) {
       commit("apiLoading", true);
       const filters = {
         hideNullBpms: state.hideNullBpms
@@ -45,7 +45,7 @@ const tracksModule: Module<any, any> = {
         [
           jsonapiData,
           {
-            url: `/collections/johanbaaij/tracks`,
+            url: `/collections/${rootState.user.username}/tracks`,
             params: {
               include: "release",
               ...urlParams

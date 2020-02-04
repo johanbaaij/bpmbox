@@ -1,9 +1,21 @@
 <template>
-  <v-row>
-    <v-col md="6">
-      <find-collection-widget />
-    </v-col>
-  </v-row>
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="auto">
+        <h1 class="text-center">
+          {{ $t("app.title") }}
+        </h1>
+        <h2 class="text-center">
+          {{ $t("app.subtitle") }}
+        </h2>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col md="6" lg="4" sm="8">
+        <find-collection-widget />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -20,6 +32,11 @@ import FindCollectionWidget from "@/components/FindCollectionWidget.vue";
   },
   components: {
     FindCollectionWidget
+  },
+  beforeMount() {
+    if (this.$store.state.user.username !== null) {
+      this.$router.replace({ name: "tracks" });
+    }
   }
 })
 export default class Home extends Vue {}

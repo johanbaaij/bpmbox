@@ -19,7 +19,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/collections/:username",
+    path: "/collection",
     name: "collection",
     component: Collection,
     props: true,
@@ -36,12 +36,6 @@ const routes = [
     path: "/404",
     name: "FourOhFour",
     component: FourOhFour
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: Register,
-    meta: { auth: false }
   },
   {
     path: "/login",

@@ -2,8 +2,8 @@
   <v-app v-if="$auth.ready()">
     <the-app-bar />
     <v-content>
-        <Notifications />
-        <router-view />
+      <Notifications />
+      <router-view />
     </v-content>
   </v-app>
 </template>
@@ -34,5 +34,9 @@ import TheAppBar from "@/components/TheAppBar.vue";
     };
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  beforeCreate() {
+    this.$store.commit("user/initialise");
+  }
+}
 </script>

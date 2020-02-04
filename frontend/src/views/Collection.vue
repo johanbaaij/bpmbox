@@ -24,8 +24,18 @@ import MetaInfo from "vue-meta";
   }
 })
 export default class Collection extends Vue {
-  @Prop() readonly username!: string;
   $cable: any;
+
+  beforeMount() {
+    if (this.$store.state.user.username === null) {
+      // UnhandledPromiseRejectionWarning
+      this.$router.replace({ name: "home" });
+    }
+  }
+
+  get username() {
+    return this.$store.state.user.username;
+  }
 
   mounted() {
     this.$cable.subscribe({
