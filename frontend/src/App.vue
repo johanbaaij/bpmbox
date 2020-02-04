@@ -4,6 +4,7 @@
     <v-content>
       <Notifications />
       <router-view />
+      <RefreshAppSnackbar />
       <v-snackbar
         v-model="state.snackWithButtons"
         :timeout="state.timeout"
@@ -11,11 +12,11 @@
       >
         {{ state.snackWithBtnText }}
         <v-spacer />
-        <v-btn flat @click.native="refreshApp">
+        <v-btn text @click.native="refreshApp">
           {{ state.snackBtnText }}
         </v-btn>
-        <v-btn icon @click="state.snackWithButtons = false">
-          <v-icon>close</v-icon>
+        <v-btn text @click="state.snackWithButtons = false">
+          <v-icon>mdi-close</v-icon>
         </v-btn>
       </v-snackbar>
     </v-content>
@@ -24,13 +25,12 @@
 
 <script lang="ts">
 import MetaInfo from "vue-meta";
-import { createComponent, reactive } from "@vue/composition-api";
+import { createComponent } from "@vue/composition-api";
 import CollectionsChannel from "@/channels/CollectionsChannel";
 import Notifications from "@/components/Notifications.vue";
 import TheAppBar from "@/components/TheAppBar.vue";
 import i18n from "@/plugins/i18n";
 import store from "@/store";
-import useServiceWorkerRefresh from "@/composables/useServiceWorkerRefresh";
 
 const App = createComponent({
   name: "app",
@@ -52,14 +52,6 @@ const App = createComponent({
   },
   setup() {
     store.commit("user/initialise");
-
-    const { state, refreshApp, showRefreshUI } = useServiceWorkerRefresh();
-
-    return {
-      state,
-      refreshApp,
-      showRefreshUI
-    };
   }
 });
 
