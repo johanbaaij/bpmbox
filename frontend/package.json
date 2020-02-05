@@ -16,7 +16,7 @@
     "actioncable-vue": "^1.5.1",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
-    "jsonapi-vuex": "^3.5.0",
+    "jsonapi-vuex": "^4.0.0",
     "lodash": "^4.17.15",
     "register-service-worker": "^1.6.2",
     "validator": "^12.2.0",
