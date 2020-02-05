@@ -6770,10 +6770,10 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-jsonapi-vuex@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jsonapi-vuex/-/jsonapi-vuex-4.0.0.tgz#bdca4be402207fd2f2d9612204a2249d8fb1ac6a"
-  integrity sha512-sKWb29Hq5uDF5pGL2yTX9+J6dCTrdFjlozfLk2MdXLYEiL0idXESwMzbAPX5XakYQrU9rK7z/gmPQakkKwmDMA==
+jsonapi-vuex@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/jsonapi-vuex/-/jsonapi-vuex-4.1.0.tgz#d3b55deaa294562055b56687947c1845c0eacff9"
+  integrity sha512-kO7KJcG1pW+NLRC8GeVMUutCF34VYq25CAtvsUMdNnYRlo4AIoPA3fofNYxoSJp5wJcbymtKuu6mXpLa0PthgQ==
   dependencies:
     jsonpath-plus "^3.0.0"
     lodash.get "^4.4.2"
