@@ -5,8 +5,8 @@ class AuthControllerTest < ActionDispatch::IntegrationTest
     @email = users(:no_discogs).email
     @password = 'secret123'
 
-    @new_email = "newuser@gmail.com"
-    @name = "Name Name"
+    # @new_email = "newuser@gmail.com"
+    # @name = "Name Name"
   end
 
   test 'should sign in' do
@@ -15,13 +15,13 @@ class AuthControllerTest < ActionDispatch::IntegrationTest
     assert_equal @email, response.header['uid']
   end
 
-  test 'should register' do
-    post user_registration_url,
-         params: { email: @new_email,
-                   password: @password,
-                   password_confirmation: @password,
-                   name: @name }, as: :json
-    assert_response :success
-  end
+  # test 'should register' do
+  #   post user_registration_url,
+  #        params: { email: @new_email,
+  #                  password: @password,
+  #                  password_confirmation: @password,
+  #                  name: @name }, as: :json
+  #   assert_response :success
+  # end
 
 end
