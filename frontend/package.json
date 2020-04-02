@@ -13,7 +13,7 @@
   "dependencies": {
     "@vue/composition-api": "^0.3.4",
     "@websanova/vue-auth": "^2.21.15-beta",
-    "actioncable-vue": "^1.5.1",
+    "actioncable-vue": "^2.0.0",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "jsonapi-vuex": "^4.1.1",
