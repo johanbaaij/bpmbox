@@ -11,7 +11,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "@vue/composition-api": "^0.3.4",
+    "@vue/composition-api": "^0.5.0",
     "@websanova/vue-auth": "^2.21.15-beta",
     "actioncable-vue": "^2.0.0",
     "axios": "^0.19.2",
