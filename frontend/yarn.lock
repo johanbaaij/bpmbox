@@ -2030,10 +2030,10 @@ acorn@^7.1.0, acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
 
-actioncable-vue@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/actioncable-vue/-/actioncable-vue-2.0.0.tgz#f96234563c22944feb73f555d89b2ab089176545"
-  integrity sha512-88hu1DBsuzxyxMKRN3ddFokShrrts3ox65oSTZC/QoQMGf+WLKWWup9paCzTV85NPAWFwD9qq1j2dKisudDF2w==
+actioncable-vue@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/actioncable-vue/-/actioncable-vue-2.0.2.tgz#a45a177b92ed8e9a4235d69012018051de412160"
+  integrity sha512-p3awpyNkZePMwqHWZhrhxUyko+omtodrTdHVfwSejcnl8UuAmhpb0Oi414LYQBc38MkGN6coHrzuAZPTiwWAeQ==
   dependencies:
     actioncable "^5.2.3"
 
