@@ -1,0 +1,76 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/api"
+  schedule:
+    interval: daily
+    time: "19:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.1
+    - 1.11.2
+  - dependency-name: rails
+    versions:
+    - 6.0.3.4
+    - 6.0.3.5
+  - dependency-name: brakeman
+    versions:
+    - 5.0.0
+  - dependency-name: reek
+    versions:
+    - 6.0.3
+  - dependency-name: rollbar
+    versions:
+    - 3.1.1
+- package-ecosystem: npm
+  directory: "/frontend"
+  schedule:
+    interval: daily
+    time: "19:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: vue-i18n
+    versions:
+    - 8.22.4
+    - 8.23.0
+    - 8.24.0
+    - 8.24.1
+    - 8.24.2
+    - 8.24.3
+  - dependency-name: vuetify
+    versions:
+    - 2.4.3
+    - 2.4.4
+    - 2.4.5
+    - 2.4.7
+    - 2.4.8
+    - 2.4.9
+  - dependency-name: vue-cli-plugin-i18n
+    versions:
+    - 1.0.1
+    - 2.0.0
+    - 2.0.1
+    - 2.0.2
+    - 2.0.3
+  - dependency-name: "@types/webpack"
+    versions:
+    - 4.41.26
+    - 5.0.0
+  - dependency-name: actioncable-vue
+    versions:
+    - 2.4.0
+    - 2.4.1
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
