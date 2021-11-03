@@ -19,7 +19,7 @@
     "jsonapi-vuex": "^4.3.1",
     "lodash": "^4.17.15",
     "register-service-worker": "^1.7.1",
-    "validator": "^13.0.0",
+    "validator": "^13.7.0",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
